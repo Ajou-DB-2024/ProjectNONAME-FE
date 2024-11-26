@@ -27,4 +27,7 @@ export const BackgroundImage = styled(Image)`
   right: -12.5rem;
 
   opacity: .3;
+  z-index: -1;
+
+  user-select: none;
 `;
