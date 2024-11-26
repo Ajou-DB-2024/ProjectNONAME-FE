@@ -1,6 +1,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --service-color-A: #FFFFFF;
+  --service-color-B: #E9F1FD;
+  --service-color-C: #D3E2FC;
+  --service-color-D: #BED4FA;
+  --service-color-E: #A8C5F9;
+  --service-color-F: #7CA9F5;
+  --service-color-G: #518CF2;
+  --service-color-H: #256FEF;
+  --service-color-I: #1E59BF;
+  --service-color-J: #16438F;
+  --service-color-K: #0F2C60;
+  --service-color-L: #0B2148;
+  --service-color-M: #071630;
+  --service-color-N: #040B18;
+  --service-color-O: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,8 +27,9 @@
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 body {
@@ -22,21 +38,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  position: relative;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+  transition: all .2s ease;
 }
