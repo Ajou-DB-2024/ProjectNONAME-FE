@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, DOMAttributes } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 
 import * as S from './style';
 import * as C from '@/constants';
@@ -21,7 +21,7 @@ type TagBlockProps = {
   children: React.ReactNode,
   selected?: boolean,
   multiSelect?: boolean
-} & DOMAttributes<HTMLDivElement>
+} & HTMLAttributes<HTMLDivElement>
 
 // components
 

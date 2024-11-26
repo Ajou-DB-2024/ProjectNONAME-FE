@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, HTMLAttributes, DOMAttributes } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 import Image from "next/image";
 
 import * as S from './style';
@@ -30,7 +30,7 @@ type NavControlItemTypes = typeof NavControlItemTypes[ keyof typeof NavControlIt
 type NavbarControlItemProps = {
   Comp: (props: {[keys in string]: any}) => React.ReactNode,
   selected?: boolean
-} & DOMAttributes<HTMLTableSectionElement>
+} & HTMLAttributes<HTMLTableSectionElement>
 
 type NavbarProps = {}
 
@@ -67,7 +67,10 @@ const Navbar: React.FC<NavbarProps> = ({ }) => {
         selected={isSelected === NavControlItemTypes.MYPAGE}
         onClick={() => onControlItemClick(NavControlItemTypes.MYPAGE)}
       />
-      <NavControlItem Comp={IconLogout} onClick={() => onControlItemClick(NavControlItemTypes.LOGOUT)}/>
+      <NavControlItem Comp={IconLogout} 
+        style={{width: "2.25rem", justifyContent: "flex-end"}}
+        onClick={() => onControlItemClick(NavControlItemTypes.LOGOUT)}
+      />
     </S.NavControlArea>
   </S.Navbar>
 };

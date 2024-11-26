@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, DOMAttributes } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 
 import * as S from './style';
 import * as C from '@/constants';
@@ -18,7 +18,7 @@ import { IconCheck } from "@tabler/icons-react"
 // types
 type CheckboxProps = {
   selected: boolean
-} & DOMAttributes<HTMLDivElement>
+} & HTMLAttributes<HTMLDivElement>
 
 // components
 
