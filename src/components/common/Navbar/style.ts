@@ -30,14 +30,21 @@ export const NavControlArea = styled.section`
 `;
 
 export const NavControlItem = styled.section<{selected: boolean}>`
+  width: 42px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   ${({selected}) => 
     selected ? `
-      padding: .3rem .5rem;
+      height: 2rem;
+      padding: .5rem .5rem .3rem .5rem;
       background-color: white;
       border: 1px solid var(--service-color-H);
       transform: translateY(1px);
     ` : `
-      padding: .25rem .5rem;
       border: 1px solid transparent;
     `
   }
