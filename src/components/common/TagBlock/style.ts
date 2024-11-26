@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TagBlock = styled.div<{selected: boolean}>`
   width: fit-content;
-  padding: .75em .5em;
+  padding: .5em .75em;
 
   display: flex;
   flex-direction: row;
@@ -18,6 +18,12 @@ export const TagBlock = styled.div<{selected: boolean}>`
   transition: all .15s cubic-bezier(0, 1, 1, 1);
   & * {
     transition: all .15s cubic-bezier(0, 1, 1, 1);
+  }
+
+  & span {
+    font-size: 1em;
+    font-weight: 500;
+    white-space: nowrap;
   }
   
   ${({selected}) => 
