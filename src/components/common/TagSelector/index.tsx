@@ -44,7 +44,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({
   const [ selector_text ] = useSelectorText(category, selected);
 
   return <S.TagSelectorArea>
-    <S.TagSelectorBlock is_selected={selected !== undefined} onClick={onSelectorClick}>
+    <S.TagSelectorBlock selected={selected.length > 0} onClick={onSelectorClick}>
       <span>{selector_text}</span>
       <S.TagSelectorArrow is_open={is_open}/>
     </S.TagSelectorBlock>

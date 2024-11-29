@@ -8,7 +8,7 @@ export const TagSelectorArea = styled.section`
   }
 `;
 
-export const TagSelectorBlock = styled.div<{is_selected: boolean}>`
+export const TagSelectorBlock = styled.div<{selected: boolean}>`
   padding: .5em .75em;
 
   display: flex;
@@ -17,8 +17,8 @@ export const TagSelectorBlock = styled.div<{is_selected: boolean}>`
   justify-content: center;
   gap: .5em;
 
-  ${({is_selected}) => 
-    is_selected ? 
+  ${({selected}) => 
+    selected ? 
       `
         background-color: var(--service-color-H);
         color: var(--service-color-A);
