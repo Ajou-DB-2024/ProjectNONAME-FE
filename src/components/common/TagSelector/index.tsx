@@ -30,7 +30,7 @@ type TagSelectorProps = {
   multi_select?: boolean
   selections: SelectionType[]
   category: string
-  onSelect?: (selection: SelectionType) => any
+  onSelect?: (selection: SelectionType[]) => any
 }
 
 const TagSelector: React.FC<TagSelectorProps> = ({ 

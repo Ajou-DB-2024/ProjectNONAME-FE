@@ -4,7 +4,7 @@ import { SelectionType } from "../type";
 
 type useSelectState = (
   multi_select: boolean,
-  handler?: (selection: SelectionType) => any
+  handler?: (selections: SelectionType[]) => any
 ) => [SelectionType[], (selection: SelectionType) => any];
 
 export const useSelectState: useSelectState = (multi_select, handler) => {
@@ -12,13 +12,16 @@ export const useSelectState: useSelectState = (multi_select, handler) => {
 
   const onSelectionClick = (selection: SelectionType) => {
     const { value } = selection;
+    let update_selected = [...selected];
     
     if (selected.map(v => v.value).includes(value))
-        setSelected(p => p.filter(v => v.value !== value));
-    else if (!multi_select) setSelected([selection]);
-    else setSelected(p => [...p, selection]);
+      update_selected = update_selected.filter(v => v.value !== value);
+    else if (!multi_select) update_selected = [selection];
+    else update_selected.push(selection);
 
-    if (handler) handler(selection);
+    setSelected(update_selected);
+
+    if (handler) handler(update_selected);
     return;
   }
 
