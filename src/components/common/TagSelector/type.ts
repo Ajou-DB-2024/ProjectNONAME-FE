@@ -1,0 +1,1 @@
+export type SelectionType = {text: string, value: string | number};
