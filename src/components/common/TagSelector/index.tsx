@@ -26,18 +26,19 @@ import { useOpenState } from "./hooks/useOpenState";
 
 type TagSelectorProps = {
   multi_select?: boolean
+  opened?: boolean
   selections: SelectionType[]
   category: string
   onSelect?: (selection: SelectionType[]) => any
 }
 
 const TagSelector: React.FC<TagSelectorProps> = ({ 
-  multi_select = false,
+  multi_select = false, opened = false,
   selections, category, 
   onSelect
 }) => {
 
-  const [ is_open, onSelectorClick ] = useOpenState(false);
+  const [ is_open, onSelectorClick ] = useOpenState(opened);
   const [ selected, onSelectionClick ] = useSelectState(multi_select, onSelect);
   const [ selector_text ] = useSelectorText(category, selected);
 
