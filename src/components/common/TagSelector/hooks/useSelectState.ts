@@ -3,17 +3,25 @@ import { useState } from "react";
 import { SelectionType } from "../type";
 
 type useSelectState = (
-  handler?: (selection: SelectionType) => any
-) => [SelectionType | undefined, (selection: SelectionType) => any];
+  multi_select: boolean,
+  handler?: (selections: SelectionType[]) => any
+) => [SelectionType[], (selection: SelectionType) => any];
 
-export const useSelectState: useSelectState = (handler) => {
-  const [ selected, setSelected ] = useState<SelectionType | undefined>(undefined);
+export const useSelectState: useSelectState = (multi_select, handler) => {
+  const [ selected, setSelected ] = useState<SelectionType[]>([]);
 
   const onSelectionClick = (selection: SelectionType) => {
-    if (selected === selection) setSelected(undefined);
-    else setSelected(selection);
+    const { value } = selection;
+    let update_selected = [...selected];
+    
+    if (selected.map(v => v.value).includes(value))
+      update_selected = update_selected.filter(v => v.value !== value);
+    else if (!multi_select) update_selected = [selection];
+    else update_selected.push(selection);
 
-    if (handler) handler(selection);
+    setSelected(update_selected);
+
+    if (handler) handler(update_selected);
     return;
   }
 

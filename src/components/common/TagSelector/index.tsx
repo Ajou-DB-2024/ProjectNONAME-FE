@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 
 import * as S from './style';
 import * as C from '@/constants';
@@ -17,38 +17,43 @@ import { IconChevronUp } from "@tabler/icons-react"
 // components
 import { useSelectState } from "./hooks/useSelectState";
 import { useSelectorText } from "./hooks/useSelectorText";
-import TagBlock from "../TagBlock";
 
 // constants
-
 
 // types
 import { SelectionType } from "./type";
 import { useOpenState } from "./hooks/useOpenState";
 
 type TagSelectorProps = {
+  multi_select?: boolean
+  opened?: boolean
   selections: SelectionType[]
   category: string
-  onSelect?: (selection: SelectionType) => any
-}
+  onSelect?: (selections: SelectionType[]) => any
+} & Omit<HTMLAttributes<HTMLDivElement>, "onSelect">
 
-const TagSelector: React.FC<TagSelectorProps> = ({ selections, category, onSelect }) => {
+const TagSelector: React.FC<TagSelectorProps> = ({ 
+  multi_select = false, opened: opened_init = false,
+  selections, category, 
+  onSelect, ...props
+}) => {
 
-  const [ is_open, onSelectorClick ] = useOpenState(false);
-  const [ selected, onSelectionClick ] = useSelectState(onSelect);
+  const [ opened, onSelectorClick ] = useOpenState(opened_init);
+  const [ selected, onSelectionClick ] = useSelectState(multi_select, onSelect);
   const [ selector_text ] = useSelectorText(category, selected);
 
-  return <S.TagSelectorArea>
-    <S.TagSelectorBlock is_selected={selected !== undefined} onClick={onSelectorClick}>
+  return <S.TagSelectorArea { ...props }>
+    <S.TagSelectorBlock selected={selected.length > 0} onClick={onSelectorClick}>
       <span>{selector_text}</span>
-      <S.TagSelectorArrow is_open={is_open}/>
+      <S.TagSelectorArrow opened={opened ? 1 : 0}/>
     </S.TagSelectorBlock>
     <S.TagSelectionArea>{
       selections.map((selection, i) =>
         <S.TagSelection key={selection.value} 
-          is_open={is_open} index={i}
+          multiSelect={multi_select}
+          opened={opened ? 1 : 0} index={i}
           onClick={() => onSelectionClick(selection)}
-          selected={selection === selected} 
+          selected={selected.includes(selection)} 
         >{selection.text}</S.TagSelection>
       )
     }</S.TagSelectionArea>

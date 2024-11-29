@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { TagSelectionKeyframe, TagSelectionReverseKeyframe } from "./keyframes";
+
 import TagBlock from "../TagBlock";
 import { IconChevronUp } from "@tabler/icons-react";
 
@@ -8,7 +10,7 @@ export const TagSelectorArea = styled.section`
   }
 `;
 
-export const TagSelectorBlock = styled.div<{is_selected: boolean}>`
+export const TagSelectorBlock = styled.div<{selected: boolean}>`
   padding: .5em .75em;
 
   display: flex;
@@ -17,8 +19,8 @@ export const TagSelectorBlock = styled.div<{is_selected: boolean}>`
   justify-content: center;
   gap: .5em;
 
-  ${({is_selected}) => 
-    is_selected ? 
+  ${({selected}) => 
+    selected ? 
       `
         background-color: var(--service-color-H);
         color: var(--service-color-A);
@@ -46,20 +48,23 @@ export const TagSelectionArea = styled.section`
   gap: 0.25em;
 `;
 
-export const TagSelectorArrow = styled(IconChevronUp)<{is_open: boolean}>`
-  ${({is_open}) => !is_open && "transform: rotate(180deg);"}
+export const TagSelectorArrow = styled(IconChevronUp)<{opened: number}>`
+  ${({opened}) => !opened && "transform: rotate(180deg);"}
 `;
 
-export const TagSelection = styled(TagBlock)<{is_open: boolean, index?: number}>`
+export const TagSelection = styled(TagBlock)<{opened: number, index?: number}>`
   width: 100%;
   font-size: 1em;
 
+  opacity: 0;
   overflow: hidden;
-  ${({is_open, index}) => 
-    is_open ? `
-      opacity: 1;
-    ` : `
-      opacity: 0;
-    `
-  }
+  
+  animation-duration: .25s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0, 1, 1, 1);
+  ${({opened}) => opened ? 
+    css`animation-name: ${TagSelectionKeyframe};`
+    : css`animation-name: ${TagSelectionReverseKeyframe};`
+  };
+  ${({index = 0}) => css`animation-delay: ${index * 0.025}s;`};
 `;
