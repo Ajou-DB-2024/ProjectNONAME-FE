@@ -22,11 +22,15 @@ export default function ServiceWrap() {
       <section style={{
         width: "fit-content"
       }}>
-      <TagSelector selections={[
-        { text: "분야1", value: 1 },
-        { text: "분야2", value: 2 },
-        { text: "분야3", value: 3 },]}
-      category="분야"/>
+      <TagSelector 
+        selections={[
+          { text: "분야1", value: 1 },
+          { text: "분야2", value: 2 },
+          { text: "분야3", value: 3 },
+        ]}
+        category="분야"
+        multi_select={true}
+      />
       </section>
     </section>
   );

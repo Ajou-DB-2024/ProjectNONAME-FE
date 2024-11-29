@@ -27,15 +27,20 @@ import { SelectionType } from "./type";
 import { useOpenState } from "./hooks/useOpenState";
 
 type TagSelectorProps = {
+  multi_select?: boolean
   selections: SelectionType[]
   category: string
   onSelect?: (selection: SelectionType) => any
 }
 
-const TagSelector: React.FC<TagSelectorProps> = ({ selections, category, onSelect }) => {
+const TagSelector: React.FC<TagSelectorProps> = ({ 
+  multi_select = false,
+  selections, category, 
+  onSelect
+}) => {
 
   const [ is_open, onSelectorClick ] = useOpenState(false);
-  const [ selected, onSelectionClick ] = useSelectState(onSelect);
+  const [ selected, onSelectionClick ] = useSelectState(multi_select, onSelect);
   const [ selector_text ] = useSelectorText(category, selected);
 
   return <S.TagSelectorArea>
@@ -46,9 +51,10 @@ const TagSelector: React.FC<TagSelectorProps> = ({ selections, category, onSelec
     <S.TagSelectionArea>{
       selections.map((selection, i) =>
         <S.TagSelection key={selection.value} 
+          multiSelect={multi_select}
           is_open={is_open} index={i}
           onClick={() => onSelectionClick(selection)}
-          selected={selection === selected} 
+          selected={selected.includes(selection)} 
         >{selection.text}</S.TagSelection>
       )
     }</S.TagSelectionArea>
