@@ -2,16 +2,20 @@ import { useState } from "react";
 
 import { SelectionType } from "../type";
 
-type useSelectState = () => [SelectionType | undefined, (selection: SelectionType) => any];
-export const useSelectState = () => {
+type useSelectState = (
+  handler?: (selection: SelectionType) => any
+) => [SelectionType | undefined, (selection: SelectionType) => any];
+
+export const useSelectState: useSelectState = (handler) => {
   const [ selected, setSelected ] = useState<SelectionType | undefined>(undefined);
 
   const onSelectionClick = (selection: SelectionType) => {
-    if (selected === selection)
-      return setSelected(undefined);
-    
-    return setSelected(selection);``
+    if (selected === selection) setSelected(undefined);
+    else setSelected(selection);
+
+    if (handler) handler(selection);
+    return;
   }
 
-  return [ selected, onSelectionClick ] as ReturnType<useSelectState>;
+  return [ selected, onSelectionClick ];
 }
