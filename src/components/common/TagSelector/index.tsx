@@ -17,10 +17,8 @@ import { IconChevronUp } from "@tabler/icons-react"
 // components
 import { useSelectState } from "./hooks/useSelectState";
 import { useSelectorText } from "./hooks/useSelectorText";
-import TagBlock from "../TagBlock";
 
 // constants
-
 
 // types
 import { SelectionType } from "./type";

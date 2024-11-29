@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import TagBlock from "../TagBlock";
 import { IconChevronUp } from "@tabler/icons-react";
 
@@ -50,16 +50,32 @@ export const TagSelectorArrow = styled(IconChevronUp)<{is_open: boolean}>`
   ${({is_open}) => !is_open && "transform: rotate(180deg);"}
 `;
 
+const TagSelectionKeyframe = keyframes({
+  "0%": { opacity: 0, display: "none" },
+  "1%": { opacity: 0, paddingTop: 0, paddingBottom: 0 },
+  "20%": { opacity: 0 },
+  "100%": { opacity: 1 }
+});
+
+const TagSelectionReverseKeyframe = keyframes({
+  "0%": { opacity: 1 },
+  "80%": { opacity: 0 },
+  "99%": { opacity: 0, paddingTop: 0, paddingBottom: 0 },
+  "100%": { opacity: 0, display: "none" }
+});
+
 export const TagSelection = styled(TagBlock)<{is_open: boolean, index?: number}>`
   width: 100%;
   font-size: 1em;
 
   overflow: hidden;
-  ${({is_open, index}) => 
-    is_open ? `
-      opacity: 1;
-    ` : `
-      opacity: 0;
-    `
-  }
+  
+  animation-duration: .25s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0, 1, 1, 1);
+  ${({is_open}) => is_open ? 
+    css`animation-name: ${TagSelectionKeyframe};`
+    : css`animation-name: ${TagSelectionReverseKeyframe};`
+  };
+  ${({index = 0}) => css`animation-delay: ${index * 0.025}s;`};
 `;
