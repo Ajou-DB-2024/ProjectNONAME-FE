@@ -48,11 +48,11 @@ export const TagSelectionArea = styled.section`
   gap: 0.25em;
 `;
 
-export const TagSelectorArrow = styled(IconChevronUp)<{is_open: boolean}>`
-  ${({is_open}) => !is_open && "transform: rotate(180deg);"}
+export const TagSelectorArrow = styled(IconChevronUp)<{opened: number}>`
+  ${({opened}) => !opened && "transform: rotate(180deg);"}
 `;
 
-export const TagSelection = styled(TagBlock)<{is_open: boolean, index?: number}>`
+export const TagSelection = styled(TagBlock)<{opened: number, index?: number}>`
   width: 100%;
   font-size: 1em;
 
@@ -62,7 +62,7 @@ export const TagSelection = styled(TagBlock)<{is_open: boolean, index?: number}>
   animation-duration: .25s;
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0, 1, 1, 1);
-  ${({is_open}) => is_open ? 
+  ${({opened}) => opened ? 
     css`animation-name: ${TagSelectionKeyframe};`
     : css`animation-name: ${TagSelectionReverseKeyframe};`
   };
