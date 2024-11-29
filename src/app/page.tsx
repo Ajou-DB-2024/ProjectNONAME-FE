@@ -3,6 +3,7 @@
 import BriefBlock from "@/components/common/BriefBlock";
 import Navbar from "@/components/common/Navbar";
 import TagBlock from "@/components/common/TagBlock";
+import TagSelector from "@/components/common/TagSelector";
 import { useState } from "react";
 
 export default function ServiceWrap() {
@@ -17,7 +18,16 @@ export default function ServiceWrap() {
         <BriefBlock title="총 참여한 동아리 개수" unit="개">{12}</BriefBlock>
         <BriefBlock title="총 참여한 동아리 개수" unit="개">{12}</BriefBlock>
       </section>
-      <TagBlock multiSelect={true} selected={checked} onClick={() => setChecked(p => !p)}>abc</TagBlock>
+      {/* <TagBlock multiSelect={true} selected={checked} onClick={() => setChecked(p => !p)}>abc</TagBlock> */}
+      <section style={{
+        width: "fit-content"
+      }}>
+      <TagSelector selections={[
+        { text: "분야1", value: 1 },
+        { text: "분야2", value: 2 },
+        { text: "분야3", value: 3 },]}
+      category="분야"/>
+      </section>
     </section>
   );
 }
