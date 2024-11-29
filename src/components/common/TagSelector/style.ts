@@ -1,4 +1,6 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
+import { TagSelectionKeyframe, TagSelectionReverseKeyframe } from "./keyframes";
+
 import TagBlock from "../TagBlock";
 import { IconChevronUp } from "@tabler/icons-react";
 
@@ -50,24 +52,11 @@ export const TagSelectorArrow = styled(IconChevronUp)<{is_open: boolean}>`
   ${({is_open}) => !is_open && "transform: rotate(180deg);"}
 `;
 
-const TagSelectionKeyframe = keyframes({
-  "0%": { opacity: 0, display: "none" },
-  "1%": { opacity: 0, paddingTop: 0, paddingBottom: 0 },
-  "20%": { opacity: 0 },
-  "100%": { opacity: 1 }
-});
-
-const TagSelectionReverseKeyframe = keyframes({
-  "0%": { opacity: 1 },
-  "80%": { opacity: 0 },
-  "99%": { opacity: 0, paddingTop: 0, paddingBottom: 0 },
-  "100%": { opacity: 0, display: "none" }
-});
-
 export const TagSelection = styled(TagBlock)<{is_open: boolean, index?: number}>`
   width: 100%;
   font-size: 1em;
 
+  opacity: 0;
   overflow: hidden;
   
   animation-duration: .25s;
