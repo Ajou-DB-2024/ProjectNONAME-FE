@@ -3,6 +3,7 @@
 import BriefBlock from "@/components/common/BriefBlock";
 import GroupingTitle, { GROUPING_TITLE_TYPE } from "@/components/common/GroupingTitle";
 import Navbar from "@/components/common/Navbar";
+import ProfileSelector from "@/components/common/ProfileSelector";
 import RecruitFilter from "@/components/common/RecruitFilter";
 import SearchBlock from "@/components/common/SearchBlock";
 import TagBlock from "@/components/common/TagBlock";
@@ -14,6 +15,14 @@ export default function ServiceWrap() {
   return (
     <section>
       <Navbar/>
+      <ProfileSelector
+       onSelect={(...props) => console.log(props)}
+       clubs={[
+        { club_id: "TEST_001", club_name: "나데베의 Weave" },
+        { club_id: "TEST_002", club_name: "Whois" }
+       ]}
+      />
+
       {/* <TagBlock multiSelect={true} selected={checked} onClick={() => setChecked(p => !p)}>abc</TagBlock> */}
       <section style={{
         width: "100%",
