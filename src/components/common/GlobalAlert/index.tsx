@@ -10,9 +10,10 @@ import states from "@/core/zustand/states";
 import { IconAlertCircle, IconAlertTriangle, IconInfoSquareRounded, IconQuestionMark, IconSelect } from "@tabler/icons-react"
 import useSwipeDownAction from "@/hooks/useSwipeDownAction";
 import useDelayState from "@/hooks/useDelayState";
-import { GlobalAlertButton, GlobalAlertPromptButton, GlobalAlertType } from "./type";
+import { GlobalAlertType } from "./type";
 import ServiceButton from "../ServiceButton";
-import { ServiceButtonSize, ServiceButtonTheme } from "../ServiceButton/type";
+import { ServiceButtonSize } from "../ServiceButton/type";
+import ServiceInput from "../ServiceInput";
 
 // API
 // import dataAPI from "@data/index"
@@ -98,13 +99,19 @@ const GlobalAlert: React.FC = () => {
         .map((v, i) => <span key={`ALERT_DESC_${i}`}>{v}</span>)
       }</S.AlertDescription>
       <S.ContentArea>{
-        ( alert_info.type === GlobalAlertType.SELECT ) && 
+        ( alert_info.type === GlobalAlertType.SELECT ) ? 
         alert_info.contents.selections.map(({text, value}) =>
           <S.SelectionBlock 
             key={`ALERT_SELECTION_${value}`}
             onClick={ () => onSelectionClick(value) }
           >{ text }</S.SelectionBlock>
         )
+        : ( alert_info.type === GlobalAlertType.PROMPT ) ? 
+          <ServiceInput 
+            onInputComplete={(value) => setInputValue(value)}
+            style={{ width: "100%" }}
+          />
+        : <></>
       }</S.ContentArea>
       <S.ButtonArea>{
           alert_info.contents.buttons?.map( (button, i) =>
