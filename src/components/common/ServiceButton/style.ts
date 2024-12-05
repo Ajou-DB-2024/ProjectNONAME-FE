@@ -19,7 +19,7 @@ export const ServiceButtonBlock = styled.div<{
       border-radius: 0.625em;
     ` :
     ($size === ServiceButtonSize.NORMAL) ? `
-      padding: 0.5em 0.625em;
+      padding: 0.75em 0.625em;
       font-size: 1em;
       border-radius: 0.5em;
     ` :
@@ -60,4 +60,6 @@ export const ServiceButtonBlock = styled.div<{
       background-color: var(--button-color);
     `
   }
+
+  text-align: center;
 `;
