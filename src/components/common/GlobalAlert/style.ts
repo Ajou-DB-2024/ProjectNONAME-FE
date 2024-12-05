@@ -36,7 +36,7 @@ export const GlobalAlertCover = styled.section`
 `;
 
 export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
-  padding: 2em 1.5em .5em 1.5em;
+  padding: 2em 1.5em 1.5em 1.5em;
   min-height: 30vh;
 
   background-color: white;
@@ -102,8 +102,8 @@ export const AlertTitle = styled.h3<{$type: GlobalAlertType}>`
   font-size: 1.25em;
   font-weight: 700;
   ${({$type}) => 
-    ($type === GlobalAlertType.ALERT) ? `color: #e7be13;`
-    : ($type === GlobalAlertType.WARNING) ? `color: #e71313;`
+    ($type === GlobalAlertType.ALERT) ? `color: #e71313;`
+    : ($type === GlobalAlertType.WARNING) ? `color: #e7be13;`
     : `color: var(--service-color-H);`
   }
 `;
@@ -115,6 +115,8 @@ export const AlertDescription = styled.section`
 `;
 
 export const ButtonArea = styled.section`
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -110,10 +110,11 @@ const GlobalAlert: React.FC = () => {
           alert_info.contents.buttons?.map( (button, i) =>
             <ServiceButton 
               key={`ALERT_BUTTON_${i}`}
-              size={ServiceButtonSize.XLARGE}
+              size={ServiceButtonSize.NORMAL}
               theme={button.theme}
               mode={button.mode}
               onClick={() => onButtonClick(button)}
+              style={{width: "100%"}}
             >{button.text}</ServiceButton>
           )
       }</S.ButtonArea>
