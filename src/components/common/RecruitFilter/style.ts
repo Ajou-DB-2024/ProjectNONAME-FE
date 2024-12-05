@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const RecruitFilterArea = styled.section`
   padding: .25em .5em;
+
+  font-size: 12px;
   
   max-width: 100%;
 

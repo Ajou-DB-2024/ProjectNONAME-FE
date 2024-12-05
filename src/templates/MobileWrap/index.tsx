@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 // recoil
-import { useRecoilState, useSetRecoilState, useRecoilValue, ResetRecoilState } from "recoil";
 // import states from "@core/recoil/states";
 
 // styled-components
@@ -23,10 +22,10 @@ const BACKGROUND_IMG = "/assets/image/undraw_forms_re_pkrt.svg";
 
 const MobileWrap: React.FC<MobileWrapProps> = ({ children }) => {
   return <S.MainWrap>
-    {children}
-    <S.BackgroundImage src={BACKGROUND_IMG} alt=""
-      width={391} height={319}  
-    />
+      {children}
+      <S.BackgroundImage src={BACKGROUND_IMG} alt=""
+        width={391} height={319}  
+      />
   </S.MainWrap>
 };
 
