@@ -18,18 +18,26 @@ export default function ServiceWrap() {
   const { alert } = states.useGlobalAlertQueue();
   useEffect(() => {
     const alert_info = {
-      type: "GLOBAL_ALERT_TYPE/ALERT",
+      type: "GLOBAL_ALERT_TYPE/SELECT",
       contents: {
-        title: "seifjos",
-        desc: "sejfiosej",
-        buttons: [
-          { text: "abc", theme: "sef", value: "sefjio", onClick: () => true }
-        ]
+        title: "프로필 선택",
+        desc: "홈에서 확인할 프로필을 선택해주세요",
+        selections: [
+          { text: "aaaaaa", value: "111111" },
+          { text: "bbbbbb", value: "222222" },
+          { text: "cccccc", value: "333333" },
+          { text: "dddddd", value: "444444" },
+          { text: "eeeeee", value: "555555" }
+        ],
+        onSelect: (...props) => {
+          console.log(props)
+          return true;
+        },
       }
     } as GlobalAlertInfo;
     setTimeout(() => {
       console.log(alert_info);
-    alert(alert_info);
+      alert(alert_info);
     }, 500);
   }, []);
 
