@@ -18,7 +18,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({ placeholder, onKeywordInput }
 
   return (
     <S.Container>
-      <S.SearchInputWrapper isFocused={isFocused}>
+      <S.SearchInputWrapper $focused={isFocused}>
         <IconSearch size={20} color={isFocused ? "var(--service-color-H)" : "#9ca3af"} />
         <S.SearchInput
           placeholder={placeholder}
