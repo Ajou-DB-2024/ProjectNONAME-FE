@@ -51,7 +51,8 @@ export type GlobalAlertInfo = (
       desc: string,
       selections: GlobalAlertSelctions[]
       buttons?: GlobalAlertButton[],
-      onSelect: (value: string) => any
+      onSelect: (value: string) => any,
+      onClose?: () => any,
     }
   } |
   {

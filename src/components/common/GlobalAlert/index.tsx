@@ -48,9 +48,11 @@ const GlobalAlert: React.FC = () => {
   }, [global_isdisplay]);
 
   const closeAlert = () => {
-    if (alert_info) {
-      console.log(deleteAlertInfo(alert_info.id));
-    }
+    if (!alert_info) return;
+
+    deleteAlertInfo(alert_info.id);
+    if (alert_info.type === GlobalAlertType.SELECT && alert_info.contents?.onClose)
+      alert_info.contents.onClose();
   };
 
   const { onTouchStart, onTouchMove, onTouchEnd } = useSwipeDownAction(closeAlert);
