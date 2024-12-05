@@ -18,18 +18,20 @@ export default function ServiceWrap() {
   const { alert } = states.useGlobalAlertQueue();
   useEffect(() => {
     const alert_info = {
-      type: "GLOBAL_ALERT_TYPE/ALERT",
+      type: "GLOBAL_ALERT_TYPE/PROMPT",
       contents: {
-        title: "seifjos",
-        desc: "sejfiosej",
+        title: "프롬프트",
+        desc: "프롬프트이지롱",
         buttons: [
-          { text: "abc", theme: "sef", value: "sefjio", onClick: () => true }
+          { text: "입력완료", theme: "SERVICE_BUTTON/THEME/COLORED", mode: "main",
+            onClick: (...props) => { console.log(...props) } 
+          }
         ]
       }
     } as GlobalAlertInfo;
     setTimeout(() => {
       console.log(alert_info);
-    alert(alert_info);
+      alert(alert_info);
     }, 500);
   }, []);
 

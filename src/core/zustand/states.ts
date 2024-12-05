@@ -16,20 +16,12 @@ const useGlobalAlertQueue = create<useGlobalAlertQueue>()(set => ({
   alert_call_cnt: 0,
   queue: [],
   alert: (info) => 
-    set((state) => {
-      console.log("will set", ({
-        ...state,
-        is_display: true,
-        alert_call_cnt: state.alert_call_cnt+1,
-        queue: [...state.queue, {...info, id: state.alert_call_cnt+1}]
-      }));
-      return ({
-        ...state,
-        is_display: true,
-        alert_call_cnt: state.alert_call_cnt+1,
-        queue: [...state.queue, {...info, id: state.alert_call_cnt+1}]
-      })
-    }),
+    set((state) => ({
+      ...state,
+      is_display: true,
+      alert_call_cnt: state.alert_call_cnt+1,
+      queue: [...state.queue, {...info, id: state.alert_call_cnt+1}]
+    }) ),
   getAlertInfo: () => {
     let alert_info;
     set((state) => {

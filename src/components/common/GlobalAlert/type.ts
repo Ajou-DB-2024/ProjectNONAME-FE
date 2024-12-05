@@ -1,15 +1,18 @@
-const GlobalAlertType = {
+import { ServiceButtonTheme } from "../ServiceButton/type";
+
+export const GlobalAlertType = {
   NORMAL: "GLOBAL_ALERT_TYPE/NORMAL", // 일반알림
   SELECT: "GLOBAL_ALERT_TYPE/SELECT", // 단일선택
   PROMPT: "GLOBAL_ALERT_TYPE/PROMPT", // 입력 프롬프트
   WARNING: "GLOBAL_ALERT_TYPE/WARNING", // 주의
   ALERT: "GLOBAL_ALERT_TYPE/ALERT", // 경고
 } as const;
-type GlobalAlertType = typeof GlobalAlertType[ keyof typeof GlobalAlertType ]
+export type GlobalAlertType = typeof GlobalAlertType[ keyof typeof GlobalAlertType ]
 
 type GlobalAlertCommonButton = {
   text: string,
-  theme: string
+  theme: ServiceButtonTheme,
+  mode: "main" | "sub"
 }
 
 export type GlobalAlertButton = GlobalAlertCommonButton & {
@@ -47,8 +50,9 @@ export type GlobalAlertInfo = (
       title: string,
       desc: string,
       selections: GlobalAlertSelctions[]
-      buttons: GlobalAlertButton[],
-      onSelect: (value: string) => any
+      buttons?: GlobalAlertButton[],
+      onSelect: (value: string) => any,
+      onClose?: () => any,
     }
   } |
   {

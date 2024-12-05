@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { GlobalAlertBackgroundInKeyframe, GlobalAlertBackgroundOutKeyframe, GlobalAlertCloseKeyframe, GlobalAlertOpenKeyframe } from "./keyframes";
+import { GlobalAlertType } from "./type";
 
 export const GlobalAlertWrap = styled.section<{$display: boolean, $anim_display: boolean}>`
   width: 100%;
@@ -35,7 +36,7 @@ export const GlobalAlertCover = styled.section`
 `;
 
 export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
-  padding: 1.75em .5em .5em .5em;
+  padding: 2em 1.5em 1.5em 1.5em;
   min-height: 30vh;
 
   background-color: white;
@@ -47,6 +48,12 @@ export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
   bottom: 1em;
   left: 50%;
   transform: translate(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1em;
 
   animation-duration: .8s;
   animation-fill-mode: both;
@@ -72,4 +79,66 @@ export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
     left: 50%;
     transform: translate(-50%);
   }
+`;
+
+export const AlertIcon = styled.div`
+  width: 2.85em;
+  height: 2.85em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f5f5f5;
+  border-radius: 1.8em;
+
+  & svg {
+    width: 1.75em;
+    height: 1.75em;
+  }
+`;
+
+export const AlertTitle = styled.h3<{$type: GlobalAlertType}>`
+  font-size: 1.25em;
+  font-weight: 700;
+  ${({$type}) => 
+    ($type === GlobalAlertType.ALERT) ? `color: #e71313;`
+    : ($type === GlobalAlertType.WARNING) ? `color: #e7be13;`
+    : `color: var(--service-color-H);`
+  }
+`;
+
+export const AlertDescription = styled.section`
+  font-size: 1em;
+  font-weight: 400;
+  color: #2a2a2a;
+`;
+
+export const ButtonArea = styled.section`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5em;
+`;
+
+export const ContentArea = styled.section`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .25em;
+`;
+
+export const SelectionBlock = styled.div`
+  width: 100%;
+  padding: .5em;
+
+  background-color: #efefef;
+  border-radius: .5em;
+
 `;
