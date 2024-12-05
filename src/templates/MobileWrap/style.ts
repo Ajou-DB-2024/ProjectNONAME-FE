@@ -5,7 +5,6 @@ export const MainWrap = styled.main`
   width: 100%;
   max-width: 393px;
   height: calc(100% - .5em);
-  padding: 0.5em;
 
   position: relative;
   top: 50%;
