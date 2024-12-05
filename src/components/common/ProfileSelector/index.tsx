@@ -48,7 +48,8 @@ const ProfileSelector: React.FC<ProfileSelectorProps> = ({ onSelect, clubs }) =>
         title, desc,
         buttons: [ { 
           text: "확인", value: "",  
-          theme: ServiceButtonTheme.COLORED, mode: "main" 
+          theme: ServiceButtonTheme.COLORED, mode: "main" ,
+          onClick: () => true
         } ]
       }
     });
