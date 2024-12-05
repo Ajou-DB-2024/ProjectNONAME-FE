@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 // recoil
-import { useRecoilState, useSetRecoilState, useRecoilValue, ResetRecoilState } from "recoil";
 // import states from "@core/recoil/states";
 
 // styled-components

@@ -4,7 +4,6 @@ import * as S from './style';
 import * as C from '@/constants';
 
 // recoil
-import { useRecoilState, useSetRecoilState, useRecoilValue, ResetRecoilState } from "recoil";
 // import states from "@/core/recoil/states";
 
 // assets
