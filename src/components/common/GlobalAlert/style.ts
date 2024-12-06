@@ -112,6 +112,8 @@ export const AlertDescription = styled.section`
   font-size: 1em;
   font-weight: 400;
   color: #2a2a2a;
+
+  word-break: keep-all;
 `;
 
 export const ButtonArea = styled.section`

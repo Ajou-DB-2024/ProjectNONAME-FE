@@ -38,6 +38,7 @@ const GlobalAlert: React.FC = () => {
   const [is_display, setIsDisplay] = useDelayState(global_isdisplay);
 
   useEffect(() => {
+    console.log(global_isdisplay, "queue", queue);
     setAlertInfo(getAlertInfo());
   }, [queue]);
 
