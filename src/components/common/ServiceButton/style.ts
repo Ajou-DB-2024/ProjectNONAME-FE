@@ -54,10 +54,15 @@ export const ServiceButtonBlock = styled.div<{
     ($theme === ServiceButtonTheme.COLORED) && `
       border-color: transparent;
       ${
-        $mode === "main" ? css`color: white;`
-        : css`color: black;`
+        $mode === "main" ? css`
+          color: white;
+          background-color: var(--button-color);
+        `
+        : css`
+          color: black;
+          background-color: #F8F8F8;
+        `
       }
-      background-color: var(--button-color);
     `
   }
 
