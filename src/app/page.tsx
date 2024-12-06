@@ -1,17 +1,10 @@
 "use client";
 
-import BriefBlock from "@/components/common/BriefBlock";
-import GlobalAlert from "@/components/common/GlobalAlert";
-import { GlobalAlertInfo } from "@/components/common/GlobalAlert/type";
 import GroupingTitle, { GROUPING_TITLE_TYPE } from "@/components/common/GroupingTitle";
 import Navbar from "@/components/common/Navbar";
 import ProfileSelector from "@/components/common/ProfileSelector";
-import RecruitFilter from "@/components/common/RecruitFilter";
 import SearchBlock from "@/components/common/SearchBlock";
-import TagBlock from "@/components/common/TagBlock";
-import TagSelector from "@/components/common/TagSelector";
 import states from "@/core/zustand/states";
-import { useEffect, useState } from "react";
 
 export default function ServiceWrap() {
 
@@ -19,7 +12,6 @@ export default function ServiceWrap() {
 
   return (
     <section>
-      <GlobalAlert/>
       <Navbar/>
       <ProfileSelector
        onSelect={(...props) => console.log(props)}
