@@ -7,6 +7,7 @@ export const ServiceButtonBlock = styled.div<{
   $theme: ServiceButtonTheme,
   $mode: "main" | "sub",
 }>`
+  cursor: pointer;
   ${({$size}) => 
     ($size === ServiceButtonSize.XLARGE) ? `
       padding: 0.75em 0.875em;
