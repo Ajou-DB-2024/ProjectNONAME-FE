@@ -38,6 +38,7 @@ export const GlobalAlertCover = styled.section`
 export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
   padding: 2em 1.5em 1.5em 1.5em;
   min-height: 30vh;
+  max-height: calc(100% - 2rem);
 
   background-color: white;
   border-radius: 1.25em;
@@ -59,6 +60,8 @@ export const GlobalAlertBlock = styled.div<{$opened: boolean}>`
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0, 1.05, 0, 1);
   animation-name: ${GlobalAlertOpenKeyframe};
+
+  overflow: auto;
 
   ${({$opened}) => $opened ? 
     css`animation-name: ${GlobalAlertOpenKeyframe};`
@@ -109,6 +112,8 @@ export const AlertTitle = styled.h3<{$type: GlobalAlertType}>`
 `;
 
 export const AlertDescription = styled.section`
+  height: max-content;
+
   font-size: 1em;
   font-weight: 400;
   color: #2a2a2a;
@@ -128,6 +133,9 @@ export const ButtonArea = styled.section`
 
 export const ContentArea = styled.section`
   width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
