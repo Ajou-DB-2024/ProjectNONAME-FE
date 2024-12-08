@@ -1,36 +1,28 @@
-"use client";
+"use server";
 
-import GroupingTitle, { GROUPING_TITLE_TYPE } from "@/components/common/GroupingTitle";
-import Navbar from "@/components/common/Navbar";
-import ProfileSelector from "@/components/common/ProfileSelector";
-import SearchBlock from "@/components/common/SearchBlock";
-import states from "@/core/zustand/states";
+import * as memberAPI from "@/api/Member";
+import * as clubAPI from "@/api/Club";
 
-export default function ServiceWrap() {
+import HomeTemplate from "@/templates/Home";
+import ErrorTemplate from "@/templates/Error";
+import { Member } from "@/types/Member";
+import { Club } from "@/types/Club";
 
-  const { alert } = states.useGlobalAlertQueue();
+export default async function Home() {
+  const clubs = await clubAPI.getMemberClub();
+  const member = await memberAPI.getLoginedMember();
 
-  return (
-    <section>
-      <Navbar/>
-      <ProfileSelector
-       onSelect={(...props) => console.log(props)}
-       clubs={[
-        { club_id: "TEST_001", club_name: "나데베의 Weave" },
-        { club_id: "TEST_002", club_name: "Whois" }
-       ]}
-      />
+  if (!clubs.result || !member.result) 
+    return <ErrorTemplate message="데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요."/>
 
-      {/* <TagBlock multiSelect={true} selected={checked} onClick={() => setChecked(p => !p)}>abc</TagBlock> */}
-      <section style={{
-        width: "100%",
-      }}>
-      <SearchBlock placeholder={"동아리, 소학회의 정보 등을 검색해보세요"} />
-      <GroupingTitle 
-        type={GROUPING_TITLE_TYPE.KIND} 
-        desc={"추천 동아리"} title={"이런 동아리는 어때요?"}
-      />
-      </section>
-    </section>
-  );
+  if (!clubs.data.success || !member.data.success) 
+    return <ErrorTemplate message="데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요."/>
+
+  const clubs_data = clubs.data.data;
+  const member_data = member.data.data as Member;
+
+  return <HomeTemplate
+    member_club_brief={clubs_data}
+    member={member_data}
+  />;
 }
