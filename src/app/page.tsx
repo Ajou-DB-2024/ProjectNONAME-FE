@@ -13,6 +13,8 @@ export default async function Home() {
     const member = await memberAPI.getLoginedMember();
     const member_clubs = await memberAPI.getMemberClub();
 
+    console.log(member);
+
     if (!member_clubs.result || !member.result) 
       throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
 
@@ -21,7 +23,7 @@ export default async function Home() {
 
 
     const member_clubs_data = member_clubs.data.data;
-    const member_data = member.data.data as Member;
+    const member_data = member.data.data?.logined_member;
 
     const manage_clubs_data = await Promise.all(
       member_clubs_data.manage_clubs.map( async (club) => {

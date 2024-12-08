@@ -7,7 +7,7 @@ import { Club, DBClub, JoinedClubBrief } from "@/types/Club";
 import { FEServerResponse } from "../type";
 
 export const getLoginedMember = async () => 
-  requestGetAPI<Member>("/member/profile");
+  requestGetAPI<{result: boolean, is_logined: boolean, logined_member: Member}>("/member/profile");
   
 export const getMemberClub = async () => 
   requestGetAPI<{
