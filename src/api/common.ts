@@ -15,7 +15,7 @@ export const getLoginToken = async () => {
 
 export const requestGetAPI = async <T>(
   url: string,
-  query?: { [keys in string]: string }
+  query?: { [keys in string]: string | number }
 ): Promise<FEServerResponse<T>> => {
   try {
     const logined_token = await getLoginToken();

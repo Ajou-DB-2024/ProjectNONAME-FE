@@ -1,4 +1,4 @@
-export const toString = (query: { [keys in string]: string }) => {
+export const toString = (query: { [keys in string]: string | number }) => {
   let request_url = "?";
 
   for ( const [ key, value ] of Object.entries(query) ) {
