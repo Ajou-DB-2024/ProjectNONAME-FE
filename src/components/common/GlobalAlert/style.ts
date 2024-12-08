@@ -21,6 +21,8 @@ export const GlobalAlertWrap = styled.section<{$display: boolean, $anim_display:
   position: fixed;
   top: 0;
   left: 0;
+
+  z-index: 10000;
 `;
 
 export const GlobalAlertCover = styled.section`
