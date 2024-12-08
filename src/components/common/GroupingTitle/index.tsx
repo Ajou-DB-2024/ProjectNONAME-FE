@@ -28,9 +28,11 @@ type GroupingTitleProps = {
 // components
 
 
-const GroupingTitle: React.FC<GroupingTitleProps> = ({ type, desc, title }) => {
+const GroupingTitle: React.FC<GroupingTitleProps> = ({ type, desc, title = "" }) => {
   return <S.GroupingTitleArea>
-    <S.GroupingTitle viewtype={type}>{title}</S.GroupingTitle>
+    <S.GroupingTitle viewtype={type}>{
+      title.split("\\n").map(v => <span key={v}>{v}</span>)
+    }</S.GroupingTitle>
     <S.TitleDescription viewtype={type}>{desc}</S.TitleDescription>
   </S.GroupingTitleArea>
 };
