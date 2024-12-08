@@ -69,6 +69,7 @@ export default function JoinAgreementTemplate() {
         theme={ServiceButtonTheme.COLORED} 
         mode={"main"}
         style={{width: "100%"}}
+        onClick={() => (location.href = "/")}
         >약관동의</ServiceButton>
     </S.ButtonArea>
   </S.JoinAgreementTemplate>
