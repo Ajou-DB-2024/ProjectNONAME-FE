@@ -13,13 +13,16 @@ export const GroupingTitle = styled.h2<{viewtype: GROUPING_TITLE_TYPE}>`
   font-size: 1.25em;
   font-weight: 700;
   ${({viewtype}) => 
-    viewtype === GROUPING_TITLE_TYPE.KIND && "display: none;"
+    viewtype === GROUPING_TITLE_TYPE.STRAIGHT && "display: none;"
   }
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TitleDescription = styled.span<{viewtype: GROUPING_TITLE_TYPE}>`
   ${({viewtype}) => 
-    viewtype === GROUPING_TITLE_TYPE.KIND ? `
+    viewtype === GROUPING_TITLE_TYPE.STRAIGHT ? `
       font-size: 1.25em;
       font-weight: 700;
   ` : `

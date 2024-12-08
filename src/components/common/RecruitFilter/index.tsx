@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 
 import * as S from './style';
 import * as C from '@/constants';
@@ -21,24 +21,30 @@ import { useFocusState } from "./hooks/useFocusState";
 // constants
 
 // types
-import { RecruitFilterOption } from "./type";
+import { FilterState, RecruitFilterOption } from "./type";
 import { useFilterState } from "./hooks/useFilterState";
+import { SelectionType } from "../TagSelector/type";
 
 type RecruitFilterProps = {
   filters: RecruitFilterOption[]
-  // onFilterChange?: (changes: FilterChangeEvent, currentFilter: FilterState) => any
-}
+  onFilterChange?: (currentFilter: (SelectionType | undefined)[]) => any
+} & HTMLAttributes<HTMLTableSectionElement>
 
-const RecruitFilter: React.FC<RecruitFilterProps> = ({ filters }) => {
+const RecruitFilter: React.FC<RecruitFilterProps> = ({ filters, onFilterChange, ...props }) => {
 
   const [ focused, onSelectorClick ] = useFocusState();
   const [ select_states, onSelectionUpdated ] = useFilterState(filters);
 
   useEffect(() => {
-    console.log(select_states);
+    if (onFilterChange) onFilterChange(
+      Object.values(select_states).map(v => {
+        if (Array.isArray(v.selected)) return v.selected[0];
+        return v.selected;
+      })
+    );
   }, [ select_states ]);
 
-  return <S.RecruitFilterArea>{
+  return <S.RecruitFilterArea {...props}>{
     filters.map(({is_multi, selections, category}, i) =>
       <TagSelector key={i} opened={focused === i}
         multi_select={is_multi || false}

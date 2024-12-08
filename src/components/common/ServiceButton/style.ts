@@ -7,6 +7,8 @@ export const ServiceButtonBlock = styled.div<{
   $theme: ServiceButtonTheme,
   $mode: "main" | "sub",
 }>`
+  cursor: pointer;
+  font-weight: 700;
   ${({$size}) => 
     ($size === ServiceButtonSize.XLARGE) ? `
       padding: 0.75em 0.875em;
@@ -37,27 +39,27 @@ export const ServiceButtonBlock = styled.div<{
 
   border-width: 1px;
   border-style: solid;
-  ${({$mode}) => 
-    ($mode === "main") ? `
-      --button-color: var(--service-color-H);
-    ` :
-    ($mode === "sub") && `
-      --button-color: black;
-    `
-  }
+
   ${({$theme, $mode}) => 
-    ($theme === ServiceButtonTheme.DEFAULT) ? `
-      border-color: var(--button-color);
-      color: var(--button-color);
+    ($theme === ServiceButtonTheme.DEFAULT && $mode === "main") ? `
+      border-color: var(--service-color-H);
+      color: var(--service-color-H);
       background-color: #F8F8F8;
     ` :
-    ($theme === ServiceButtonTheme.COLORED) && `
+    ($theme === ServiceButtonTheme.DEFAULT && $mode === "sub") ? `
+      border-color: black;
+      color: black;
+      background-color: #F8F8F8;
+    ` :
+    ($theme === ServiceButtonTheme.COLORED && $mode === "main") ? `
       border-color: transparent;
-      ${
-        $mode === "main" ? css`color: white;`
-        : css`color: black;`
-      }
-      background-color: var(--button-color);
+      color: white;
+      background-color: var(--service-color-H);
+    ` :
+    ($theme === ServiceButtonTheme.COLORED && $mode === "sub") && `
+      border-color: transparent;
+      color: black;
+      background-color: #F8F8F8;
     `
   }
 

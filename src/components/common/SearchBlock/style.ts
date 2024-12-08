@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 
 export const SearchInputWrapper = styled.div<{ $focused: boolean }>`
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 8px 12px;
