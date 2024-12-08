@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, HTMLAttributes } from "react";
 
 import * as S from './style';
 import * as C from '@/constants';
@@ -19,13 +19,13 @@ type BriefBlockProps = {
   title: string,
   children: string | number,
   unit: string
-}
+} & HTMLAttributes<HTMLDivElement>
 
 // components
 
 
-const BriefBlock: React.FC<BriefBlockProps> = ({ title, children: value, unit }) => {
-  return <S.BriefBlock>
+const BriefBlock: React.FC<BriefBlockProps> = ({ title, children: value, unit, ...props }) => {
+  return <S.BriefBlock {...props}>
     <h2>{title}</h2>
     <S.ValueArea>
       <span>{value}</span>
