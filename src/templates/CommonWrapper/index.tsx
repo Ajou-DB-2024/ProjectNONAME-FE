@@ -49,7 +49,9 @@ const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
     { !hide_common_comps && <>
       <Navbar/>
     </> }
-    {children}
+    <S.ServiceArea $display_navbar={!hide_common_comps}>
+      {children}
+    </S.ServiceArea>
   </S.CommonWrapper>
 };
 
