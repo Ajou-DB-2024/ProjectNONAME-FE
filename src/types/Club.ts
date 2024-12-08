@@ -8,9 +8,19 @@ export type DBClub = {
   name: string
 }
 
+export type ReferencedDBClub = {
+  club_id: number,
+  club_name: string
+}
+
 export type JoinedClubBrief = {
   join_count: number,
   applied_count: number
+}
+
+export type ManageClubBrief = Club & {
+  total_members: number,
+  total_submissions: number
 }
 
 export const ClubType = {
