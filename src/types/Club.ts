@@ -18,6 +18,16 @@ export type JoinedClubBrief = {
   applied_count: number
 }
 
+export type ExtendedClub = Club & {
+  type: ClubType,
+  depart: string
+}
+
+export type ExtendedDBClub = DBClub & {
+  type: ClubType,
+  depart: string
+}
+
 export type ManageClubBrief = Club & {
   total_members: number,
   total_submissions: number
@@ -28,3 +38,8 @@ export const ClubType = {
   CLUB: "CLUB_TYPE/CLUB",
 } as const;
 export type ClubType = typeof ClubType[ keyof typeof ClubType ]
+
+export type ClubSearchQuery = {
+  club_name: string,
+  tag_id: string
+}
