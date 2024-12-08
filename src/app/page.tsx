@@ -7,18 +7,20 @@ import HomeTemplate from "@/templates/Home";
 import ErrorTemplate from "@/templates/Error";
 import { Member } from "@/types/Member";
 import { Club } from "@/types/Club";
+import { ClubAPI } from "@/api";
 
 export default async function Home() {
   try {
     const member = await memberAPI.getLoginedMember();
     const member_clubs = await memberAPI.getMemberClub();
+    const filter_response = await ClubAPI.getTags();
 
     console.log(member);
 
-    if (!member_clubs.result || !member.result) 
+    if (!member_clubs.result || !member.result || !filter_response.result) 
       throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
 
-    if (!member_clubs.data.success || !member.data.success) 
+    if (!member_clubs.data.success || !member.data.success || !filter_response.data.success) 
       throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
 
 
@@ -39,10 +41,24 @@ export default async function Home() {
       } )
     )
 
+    const filters = filter_response.data.data
+      .map(v => ({
+        category: {
+          id: v.category.id.toString(),
+          text: v.category.text
+        },
+        selections: v.selections.map(selection => ({
+          text: selection.name,
+          value: selection.id
+        }))
+      }))
+    ;
+
     return <HomeTemplate
       manage_club_briefs={manage_clubs_data.reduce((a, b) => ({ ...a, ...b }))}
       member_club_brief={member_clubs_data}
       member={member_data}
+      filters={filters}
     />;
   } catch (e: any) {
     console.error(e);

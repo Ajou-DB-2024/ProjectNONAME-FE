@@ -16,6 +16,7 @@ import RecruitBlock from "@/components/Home/RecruitBlock";
 import SearchBlock from "@/components/common/SearchBlock";
 import { JoinedClubBrief } from "@/types/Club";
 import { useRouter } from "next/navigation";
+import { RecruitFilterOption } from "@/components/common/RecruitFilter/type";
 
 // API
 // import dataAPI from "@data/index"
@@ -24,13 +25,14 @@ import { useRouter } from "next/navigation";
 
 // types
 type HomePersonalProfileTemplateProps = {
-  joinclub_brief: JoinedClubBrief
+  joinclub_brief: JoinedClubBrief,
+  filters: RecruitFilterOption[]
 }
 
 // components
 
 
-const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = ({ joinclub_brief }) => {
+const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = ({ joinclub_brief, filters }) => {
 
   const router = useRouter();
 
@@ -47,106 +49,7 @@ const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = 
         title="이런 동아리는 어때요?" desc="추천 동아리"
       />
       <ParentS.SectionContentArea $direction="column">
-        <RecruitFilter style={{width: "100%"}} filters={[
-          {
-            category: {
-              id: "a",
-              text: "a"
-            },
-            selections: [
-              { text: "sefes1", value: "jsfioes1" },
-              { text: "sefes2", value: "jsfioes2" },
-              { text: "sefes3", value: "jsfioes3" },
-              { text: "sefes4", value: "jsfioes4" },
-              { text: "sefes5", value: "jsfioes5" },
-              { text: "sefes6", value: "jsfioes6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          },
-          {
-            category: {
-              id: "b",
-              text: "b"
-            },
-            selections: [
-              { text: "s1", value: "es1" },
-              { text: "s2", value: "es2" },
-              { text: "s3", value: "es3" },
-              { text: "s4", value: "es4" },
-              { text: "s5", value: "es5" },
-              { text: "s6", value: "es6" },
-            ]
-          }
-        ]}/>
+        <RecruitFilter style={{width: "100%"}} filters={filters}/>
         <S.TagSearchResultArea>
           <S.RecruitBlockWrap>
             <RecruitBlock name={"Whois"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>

@@ -1,4 +1,5 @@
 export const formatDate = (dateTimeString: string): string => {
+  console.log(dateTimeString);
   // Parse the date string
   const [datePart] = dateTimeString.split(" ");
   const [year, month, day] = datePart.split("-");

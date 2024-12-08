@@ -46,7 +46,7 @@ const useClubList = (raw_query: Partial<ClubSearchQuery>) => {
   }, [query]);
 
   useEffect(() => {
-    console.log("sejfio");
+    console.log("sejfio", query);
     fetchClubList();
   }, [query]);
 

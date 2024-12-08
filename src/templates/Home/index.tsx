@@ -14,6 +14,7 @@ import { Club, DBClub, JoinedClubBrief, ManageClubBrief } from "@/types/Club";
 import { Member } from "@/types/Member";
 import HomePersonalProfileTemplate from "./sub/PersonalProfile";
 import ClubManageProfileTemplate from "./sub/ClubManageProfile";
+import { RecruitFilterOption } from "@/components/common/RecruitFilter/type";
 
 // API
 // import dataAPI from "@data/index"
@@ -24,13 +25,14 @@ import ClubManageProfileTemplate from "./sub/ClubManageProfile";
 type HomeTemplateProps = {
   member_club_brief: { brief: JoinedClubBrief, manage_clubs: DBClub[] },
   manage_club_briefs: { [keys in string]: ManageClubBrief },
-  member: Member
+  member: Member,
+  filters: RecruitFilterOption[]
 }
 
 // components
 const HomeTemplate: React.FC<HomeTemplateProps> = ({ 
   member_club_brief, manage_club_briefs,
-  member 
+  member, filters
 }) => {
 
   const joinclub_brief = useMemo(() => member_club_brief.brief, [member_club_brief]);
@@ -47,7 +49,7 @@ const HomeTemplate: React.FC<HomeTemplateProps> = ({
   return <S.HomeTemplateWrap>
     <ProfileSelector onSelect={ onClubSelect } clubs={profile_selections}/>
     <S.HomeSectionWrap>{
-      (selected_club.club_id === "BASIC_PROFILE") ? <HomePersonalProfileTemplate joinclub_brief={joinclub_brief}/>  
+      (selected_club.club_id === "BASIC_PROFILE") ? <HomePersonalProfileTemplate joinclub_brief={joinclub_brief} filters={filters}/>  
       : <ClubManageProfileTemplate manage_club_brief={manage_club_briefs[selected_club.club_id]}/>
     }</S.HomeSectionWrap>
   </S.HomeTemplateWrap>

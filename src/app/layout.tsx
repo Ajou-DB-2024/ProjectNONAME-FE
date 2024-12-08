@@ -33,7 +33,7 @@ export default async function RootLayout({
     if (!member_response.data.success) 
       throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
   
-    member = member_response.data.data;
+    member = member_response.data.data.logined_member;
     console.log(`로그인 확인됨: ${member.name} | ${member.university.department}`)
 
   } catch (e) {}

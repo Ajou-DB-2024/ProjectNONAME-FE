@@ -20,7 +20,8 @@ const useSearchEvents = (
 
   const handleBlur = () => {
     setIsFocused(false); // focus 상태 해제
-    if (keyword.trim() && onKeywordInput) {
+    
+    if (onKeywordInput) {
       onKeywordInput(keyword.trim());
     }
   };

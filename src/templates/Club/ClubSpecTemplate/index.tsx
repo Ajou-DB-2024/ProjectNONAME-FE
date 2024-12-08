@@ -47,7 +47,7 @@ const ClubSpecTemplate: React.FC<ClubSpecTemplateProps> = ({ club }) => {
       <S.BasicInfoWrap>
         <BriefBlock className="basic-info-block" title="대표자명" unit={""}>{club.president.name}</BriefBlock>
         {/* <BriefBlock className="basic-info-block" title="직전학기 운영규모" unit={"명"}>{club.detail.}</BriefBlock> */}
-        <BriefBlock className="basic-info-block" title="최초개설일" unit={""}>{formatDate(club.detail.established_date)}</BriefBlock>
+        {club.detail.established_date && <BriefBlock className="basic-info-block" title="최초개설일" unit={""}>{formatDate(club.detail.established_date)}</BriefBlock>}
       </S.BasicInfoWrap>
     </S.SpecSection>
   </S.ClubSpecTemplate>

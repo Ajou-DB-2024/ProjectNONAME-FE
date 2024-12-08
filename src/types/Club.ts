@@ -29,12 +29,12 @@ export type ExtendedDBClub = DBClub & {
 }
 
 export type ClubDetail = {
-  description: string
-  study_count: number
-  award_count: number
-  edu_count: number
-  event_count: number
-  established_date: string
+  description?: string
+  study_count?: number
+  award_count?: number
+  edu_count?: number
+  event_count?: number
+  established_date?: string
 }
 
 export type ManageClubBrief = Club & {
