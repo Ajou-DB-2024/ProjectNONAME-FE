@@ -8,9 +8,9 @@ import { FEServerResponse } from "./type";
 
 export const getLoginToken = async () => {
   const cookieStore = await cookies();
-  const logined_token = cookieStore.get("logined_token");
+  const logined_token = cookieStore.get("login_token");
 
-  return logined_token;
+  return logined_token?.value;
 }
 
 export const requestGetAPI = async <T>(

@@ -24,6 +24,9 @@ export async function GET(request: NextRequest) {
     const body = api_response.data; // 요청 본문에서 데이터를 파싱
     const token = body.data?.logined_token;
     const member_info = body.data?.logined_member;
+    const new_member = body.data?.new_member;
+
+    console.log(body.data, new_member);
   
     if (!token) {
       return NextResponse.json({
@@ -33,11 +36,7 @@ export async function GET(request: NextRequest) {
     }
   
     // HTTP-only 쿠키 설정
-    const fe_server_response = NextResponse.json({ 
-      result: true,
-      data: member_info,
-      message: 'Login successful'
-    });
+    const fe_server_response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_PUBLISH_DOMAIN}/`, 302);
 
     fe_server_response.cookies.set('login_token', token, {
       httpOnly: true, // JavaScript 접근 금지
@@ -47,8 +46,8 @@ export async function GET(request: NextRequest) {
       maxAge: 30 * 60, // 30분 동안 유효
     });
   
-    // return fe_server_response;
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_PUBLISH_DOMAIN}/`, 302);
+    return fe_server_response;
+    // return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_PUBLISH_DOMAIN}/login/redirect?is_new=${new_member}`, 302);
   } catch (error: any) {
     console.error('[[ROUTE] GET /api/authenticate] Error forwarding request:', error.message);
 
