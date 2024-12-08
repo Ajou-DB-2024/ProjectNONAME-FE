@@ -107,7 +107,98 @@ const useMember = create<useMember>()(set => ({
   }
 }))
 
+// ==========================================
+
+type PageRouteDefinitionType = {
+  stack: false,
+  children: PageRouteDefinitionMap
+} | {
+  stack: true,
+  id: string,
+  title: string, 
+  getTitle?: (...props: any) => string,
+  children: PageRouteDefinitionMap
+}
+
+type PageRouteDefinitionMap = {
+  [keys in string]: PageRouteDefinitionType
+}
+
+type PathLog = { id: string; title: string; };
+
+type usePathStack = {
+  path_stack: PathLog[],
+  updatePathStack: (path: string, member: Member) => PathLog[],
+  updatePageName: (title: string) => any
+}
+
+const PAGE_TITLES: PageRouteDefinitionMap = {
+  "personal": {
+    stack: false,
+    children: {
+      "club": {
+        stack: false,
+        children: {
+          "list": {
+            stack: true,
+            id: "/personal/club/list",
+            title: "동아리 목록",
+            children: {}
+          },
+          ":id": {
+            stack: true,
+            id: "/personal/club/spec",
+            title: "동아리 상세",
+            children: {}
+          }
+        }
+      },
+    }
+  }
+}
+
+const usePathStack = create<usePathStack>()(set => ({
+  path_stack: [],
+  updatePathStack: (current_pathname, logined_member) => {
+    const paths = current_pathname.split("/").slice(1);
+    let path_pointer = PAGE_TITLES;
+    let calced_pathstack: PathLog[] = [
+      { id: "/", title: `${logined_member.name}의 Weave` }
+    ];
+
+    paths.forEach((path: string) => {
+      console.log(path_pointer, Object.keys(path_pointer).find(v => v.startsWith(":")))
+      if ( !(path in path_pointer) ) {
+        if (!Object.keys(path_pointer).find(v => v.startsWith(":"))) 
+          throw new Error("Invalid Path");
+        path = ":id";
+      }
+      let path_definition = path_pointer[path];
+      path_pointer = path_definition.children;
+      
+      if ( !path_definition.stack ) return;
+      let { id, title } = path_definition;
+      
+      calced_pathstack.push({ id, title });
+    })
+
+    set(state => ({
+      ...state,
+      path_stack: calced_pathstack
+    }));
+    return calced_pathstack;
+  },
+  updatePageName: (title: string) => {
+    set(state => {
+      const new_state = { ...state };
+      new_state.path_stack[state.path_stack.length-1].title = title;
+      return new_state;
+    })
+  }
+}))
+
 export default {
   useGlobalAlertQueue,
-  useMember
+  useMember,
+  usePathStack
 }
