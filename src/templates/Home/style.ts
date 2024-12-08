@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HomeTemplateWrap = styled.section`
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   padding: 1rem 1.5rem;
   box-sizing: border-box;
   

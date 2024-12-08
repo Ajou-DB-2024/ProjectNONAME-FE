@@ -12,6 +12,8 @@ import * as C from '@/constants';
 // assets
 import {  } from "@tabler/icons-react"
 import Navbar from "@/components/common/Navbar";
+import states from "@/core/zustand/states";
+import { Member } from "@/types/Member";
 
 // API
 // import dataAPI from "@data/index"
@@ -20,15 +22,17 @@ import Navbar from "@/components/common/Navbar";
 
 // types
 type CommonWrapperProps = {
+  member?: Member
   children: ReactNode 
 }
 
 // components
 
 
-const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
+const CommonWrapper: React.FC<CommonWrapperProps> = ({ children, member }) => {
 
   const pathname = usePathname();
+  const { setLogin, setLogout } = states.useMember();
 
   const [ page_loaded, setPageLoaded ] = useState<boolean>(false);
   const [ hide_common_comps, setHideCommonComps ] = useState<boolean>(false);
@@ -40,6 +44,9 @@ const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
   }, [ pathname ]);
 
   useEffect(() => {
+    if (member) setLogin(member);
+    else setLogout();
+
     setTimeout(() => {
       setPageLoaded(true);
     }, 150);
@@ -49,7 +56,9 @@ const CommonWrapper: React.FC<CommonWrapperProps> = ({ children }) => {
     { !hide_common_comps && <>
       <Navbar/>
     </> }
-    {children}
+    <S.ServiceArea $display_navbar={!hide_common_comps}>
+      {children}
+    </S.ServiceArea>
   </S.CommonWrapper>
 };
 

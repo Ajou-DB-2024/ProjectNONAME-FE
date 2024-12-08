@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { GlobalAlertInfo, GlobalAlertType } from "@/components/common/GlobalAlert/type";
 import GlobalAlert from "@/components/common/GlobalAlert";
 import { ServiceButtonTheme } from "@/components/common/ServiceButton/type";
+import { Member } from "@/types/Member";
 
 type useGlobalAlertQueue = {
   is_display: boolean,
@@ -80,6 +81,33 @@ const useGlobalAlertQueue = create<useGlobalAlertQueue>()(set => ({
   },
 }));
 
+type useMember = {
+  is_logined: false,
+  member: null,
+  setLogin: (member: Member) => any,
+  setLogout: () => any
+} | {
+  is_logined: true,
+  member: Member,
+  setLogin: (member: Member) => any,
+  setLogout: () => any
+}
+
+const useMember = create<useMember>()(set => ({
+  is_logined: false,
+  member: null,
+  setLogin: (member) => {
+    set(state => ({
+      ...state,
+      is_logined: true, member
+    }))
+  },
+  setLogout: () => {
+    set(state => ({...state, is_logined: false, member: null}));
+  }
+}))
+
 export default {
-  useGlobalAlertQueue
+  useGlobalAlertQueue,
+  useMember
 }

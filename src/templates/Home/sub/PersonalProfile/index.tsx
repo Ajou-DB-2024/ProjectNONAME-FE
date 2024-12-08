@@ -15,6 +15,7 @@ import RecruitFilter from "@/components/common/RecruitFilter";
 import RecruitBlock from "@/components/Home/RecruitBlock";
 import SearchBlock from "@/components/common/SearchBlock";
 import { JoinedClubBrief } from "@/types/Club";
+import { useRouter } from "next/navigation";
 
 // API
 // import dataAPI from "@data/index"
@@ -30,6 +31,9 @@ type HomePersonalProfileTemplateProps = {
 
 
 const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = ({ joinclub_brief }) => {
+
+  const router = useRouter();
+
   return <>
     <ParentS.HomeSection key={`HOME_SECTION_1`}>
       <h3>활동 요약</h3>
@@ -156,7 +160,7 @@ const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = 
       <GroupingTitle key={`GROUP_TITLE_3`} type={GROUPING_TITLE_TYPE.KIND}
         title="동아리에 대해\n궁금한 점이 있나요?" desc="전체 검색"
       />
-      <SearchBlock onKeywordInput={() => {}}
+      <SearchBlock onClick={() => router.push("/personal/club/list") }
         placeholder="동아리, 소학회의 정보 등을 검색해보세요"
         style={{width: "100%"}}
       />
