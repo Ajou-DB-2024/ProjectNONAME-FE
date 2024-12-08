@@ -47,7 +47,8 @@ export async function GET(request: NextRequest) {
       maxAge: 30 * 60, // 30분 동안 유효
     });
   
-    return fe_server_response;
+    // return fe_server_response;
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_PUBLISH_DOMAIN}/`, 302);
   } catch (error: any) {
     console.error('[[ROUTE] GET /api/authenticate] Error forwarding request:', error.message);
 
