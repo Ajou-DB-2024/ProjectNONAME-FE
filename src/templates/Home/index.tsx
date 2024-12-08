@@ -9,15 +9,9 @@ import * as C from '@/constants';
 // import states from "@/core/zustand/states";
 
 // assets
-import {  } from "@tabler/icons-react"
 import ProfileSelector from "@/components/common/ProfileSelector";
 import { Club, DBClub, JoinedClubBrief, ManageClubBrief } from "@/types/Club";
 import { Member } from "@/types/Member";
-import BriefBlock from "@/components/common/BriefBlock";
-import GroupingTitle, { GROUPING_TITLE_TYPE } from "@/components/common/GroupingTitle";
-import RecruitBlock from "@/components/Home/RecruitBlock";
-import RecruitFilter from "@/components/common/RecruitFilter";
-import SearchBlock from "@/components/common/SearchBlock";
 import HomePersonalProfileTemplate from "./sub/PersonalProfile";
 import ClubManageProfileTemplate from "./sub/ClubManageProfile";
 
