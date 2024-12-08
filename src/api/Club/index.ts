@@ -1,8 +1,9 @@
 "use server";
 
-import { ClubSearchQuery, ManageClubBrief } from "@/types/Club";
+import { ClubSearchQuery, ExtendedDBClub, ManageClubBrief } from "@/types/Club";
 import { requestGetAPI } from "../common";
 import { RecruitSearchQuery } from "@/types/Recruit";
+import { TagCategoryGroup } from "@/types/Tag";
 
 export const getClubBrief = async (club_id: number) => 
   requestGetAPI<ManageClubBrief>("/club/brief", { 
@@ -10,7 +11,7 @@ export const getClubBrief = async (club_id: number) =>
   });
 
 export const getTags = async () => 
-  requestGetAPI<ManageClubBrief>("/club/tags");
+  requestGetAPI<TagCategoryGroup[]>("/club/tags");
 
 export const findClub = async (query: Partial<ClubSearchQuery>) => 
-    requestGetAPI<ManageClubBrief>("/club/find", query)
+    requestGetAPI<ExtendedDBClub[]>("/club/find", query)
