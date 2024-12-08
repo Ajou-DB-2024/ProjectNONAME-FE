@@ -1,44 +1,49 @@
-"use client";
+"use server";
 
-import BriefBlock from "@/components/common/BriefBlock";
-import GlobalAlert from "@/components/common/GlobalAlert";
-import { GlobalAlertInfo } from "@/components/common/GlobalAlert/type";
-import GroupingTitle, { GROUPING_TITLE_TYPE } from "@/components/common/GroupingTitle";
-import Navbar from "@/components/common/Navbar";
-import ProfileSelector from "@/components/common/ProfileSelector";
-import RecruitFilter from "@/components/common/RecruitFilter";
-import SearchBlock from "@/components/common/SearchBlock";
-import TagBlock from "@/components/common/TagBlock";
-import TagSelector from "@/components/common/TagSelector";
-import states from "@/core/zustand/states";
-import { useEffect, useState } from "react";
+import * as memberAPI from "@/api/Member";
+import * as clubAPI from "@/api/Club";
 
-export default function ServiceWrap() {
+import HomeTemplate from "@/templates/Home";
+import ErrorTemplate from "@/templates/Error";
+import { Member } from "@/types/Member";
+import { Club } from "@/types/Club";
 
-  const { alert } = states.useGlobalAlertQueue();
+export default async function Home() {
+  try {
+    const member = await memberAPI.getLoginedMember();
+    const member_clubs = await memberAPI.getMemberClub();
 
-  return (
-    <section>
-      <GlobalAlert/>
-      <Navbar/>
-      <ProfileSelector
-       onSelect={(...props) => console.log(props)}
-       clubs={[
-        { club_id: "TEST_001", club_name: "나데베의 Weave" },
-        { club_id: "TEST_002", club_name: "Whois" }
-       ]}
-      />
+    if (!member_clubs.result || !member.result) 
+      throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
 
-      {/* <TagBlock multiSelect={true} selected={checked} onClick={() => setChecked(p => !p)}>abc</TagBlock> */}
-      <section style={{
-        width: "100%",
-      }}>
-      <SearchBlock placeholder={"동아리, 소학회의 정보 등을 검색해보세요"} />
-      <GroupingTitle 
-        type={GROUPING_TITLE_TYPE.KIND} 
-        desc={"추천 동아리"} title={"이런 동아리는 어때요?"}
-      />
-      </section>
-    </section>
-  );
+    if (!member_clubs.data.success || !member.data.success) 
+      throw new Error("데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요.");
+
+
+    const member_clubs_data = member_clubs.data.data;
+    const member_data = member.data.data as Member;
+
+    const manage_clubs_data = await Promise.all(
+      member_clubs_data.manage_clubs.map( async (club) => {
+        const brief_res = await clubAPI.getClubBrief(club.id);
+        if ( !brief_res.result ) throw new Error("관리정보 조회 중 오류가 발생했어요.");
+        if ( !brief_res.data.success )  throw new Error("관리정보 조회 중 오류가 발생했어요.");
+
+        return { [ club.id.toString() ]: {
+          ...brief_res.data.data,
+          club_id: club.id.toString(), 
+          club_name: club.name 
+        } };
+      } )
+    )
+
+    return <HomeTemplate
+      manage_club_briefs={manage_clubs_data.reduce((a, b) => ({ ...a, ...b }))}
+      member_club_brief={member_clubs_data}
+      member={member_data}
+    />;
+  } catch (e: any) {
+    console.error(e);
+    return <ErrorTemplate message="데이터 조회에 실패했어요. 잠시 후 다시 시도해주세요."/>
+  }
 }

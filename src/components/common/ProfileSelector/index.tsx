@@ -8,9 +8,9 @@ import states from "@/core/zustand/states";
 
 // assets
 import { IconChevronDown } from "@tabler/icons-react"
-import { Club } from "./type";
 import { GlobalAlertInfo } from "../GlobalAlert/type";
 import { ServiceButtonTheme } from "../ServiceButton/type";
+import { Club } from "@/types/Club";
 
 // API
 // import dataAPI from "@data/index"
