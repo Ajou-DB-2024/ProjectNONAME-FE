@@ -1476,7 +1476,6 @@ const TERMS = {
 
 export const getTerm = async (term: string) => {
   try {
-    
     return { result: true, data: (TERMS as any)[term] };
   } catch(e) {
     console.log(e);
