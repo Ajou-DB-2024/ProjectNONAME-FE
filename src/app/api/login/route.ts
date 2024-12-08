@@ -10,7 +10,7 @@ export async function GET() {
   
   try {
     // BE 서버로 요청을 포워딩
-    const api_response = await axiosInstance.get('/login');
+    const api_response = await axiosInstance.get('/member/login');
 
     const body = api_response.data; // 요청 본문에서 데이터를 파싱
     const login_redirect_url = body.data?.url;

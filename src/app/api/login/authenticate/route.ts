@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // BE 서버로 요청을 포워딩
-    const api_response = await axiosInstance.get('/login/redirect', {
+    const api_response = await axiosInstance.get('/member/login/redirect', {
       params: { code, scope },
     });
 
