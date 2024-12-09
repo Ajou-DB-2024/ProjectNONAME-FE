@@ -24,7 +24,7 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   max-width: 100%;
-  max-height: 100%;
+  max-height: 90%;
   object-fit: cover;
 `;
 
@@ -66,21 +66,25 @@ export const DeleteButton = styled.div`
 `;
 
 export const Pagination = styled.div`
-  position: relative;
-  width: 100%;
-  height: 0.5em;
+  position: absolute;
+  width: calc(100% - 2rem);
+  height: 0.35em;
+  bottom: 0;
   background-color: #eaeaea;
   margin-top: 0.5em;
   border-radius: 0.25em;
+  z-index: 100;
 `;
 
 export const Slider = styled.div<{ position: number }>`
   position: absolute;
-  height: 100%;
-  width: 1.5em; /* Indicator size */
+  height: .75em;
+  width: .75em; /* Indicator size */
   background-color: #4169e1;
-  border-radius: 0.25em;
+  border-radius: 0.75em;
   left: ${({ position }) => `${position}%`};
+  top: 50%;
+  transform: translateY(-50%);
   transition: left 0.3s;
 `;
 

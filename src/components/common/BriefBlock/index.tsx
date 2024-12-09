@@ -30,7 +30,7 @@ const BriefBlock: React.FC<BriefBlockProps> = ({ title, children: value, unit, a
     <h2>{title}</h2>
     <S.ValueArea $align={align}>
       <span>{value}</span>
-      <span>{unit}</span>
+      {(unit.length > 0) && <span>{unit}</span>}
     </S.ValueArea>
   </S.BriefBlock>
 };

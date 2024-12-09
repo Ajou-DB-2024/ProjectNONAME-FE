@@ -41,6 +41,14 @@ const TagSelector: React.FC<TagSelectorProps> = ({
   const [ selected, onSelectionClick ] = useSelectState(multi_select, onSelect);
   const [ selector_text ] = useSelectorText(category, selected);
 
+  useEffect(() => {
+    const find = selections.find(v => v.value === 33);
+    if (find) {
+      onSelectionClick(find);
+      return;
+    }
+  }, [selections]);
+
   return <S.TagSelectorArea { ...props }>
     <S.TagSelectorBlock selected={selected.length > 0} onClick={onSelectorClick}>
       <span>{selector_text}</span>

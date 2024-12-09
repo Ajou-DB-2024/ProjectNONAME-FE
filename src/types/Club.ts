@@ -24,8 +24,8 @@ export type ExtendedClub = Club & {
 }
 
 export type ExtendedDBClub = DBClub & {
-  type: ClubType,
-  depart: string
+  club_type: ClubType,
+  club_depart: string
 }
 
 export type ClubDetail = {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 import * as ParentS from "../../style";
 import * as S from './style';
@@ -17,6 +17,8 @@ import SearchBlock from "@/components/common/SearchBlock";
 import { JoinedClubBrief } from "@/types/Club";
 import { useRouter } from "next/navigation";
 import { RecruitFilterOption } from "@/components/common/RecruitFilter/type";
+import { SelectionType } from "@/components/common/TagSelector/type";
+import useClubList from "@/templates/Club/List/ClubListTemplate/hooks/useClubList";
 
 // API
 // import dataAPI from "@data/index"
@@ -36,6 +38,23 @@ const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = 
 
   const router = useRouter();
 
+    const [ selected_filters, setSelectedFilters ] = useState<(SelectionType | undefined)[]>([
+    ]);
+
+  const searchQuery = useMemo(() => ({
+    club_name: "",
+    tag_id: selected_filters.filter(v => v)
+            .map(v => v?.value).toString()
+  }), [selected_filters]);
+
+  const [ status, club_list ] = useClubList(searchQuery);
+
+  console.log(selected_filters);
+
+  const onFilterChange = (selected_filters: (SelectionType | undefined)[]) => {
+    setSelectedFilters(selected_filters);
+  }
+
   return <>
     <ParentS.HomeSection key={`HOME_SECTION_1`}>
       <h3>활동 요약</h3>
@@ -49,12 +68,25 @@ const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = 
         title="이런 동아리는 어때요?" desc="추천 동아리"
       />
       <ParentS.SectionContentArea $direction="column">
-        <RecruitFilter style={{width: "100%"}} filters={filters}/>
+        <S.Section>
+          <RecruitFilter style={{width: "100%"}} filters={filters}
+            onFilterChange={ onFilterChange }
+          />
+        </S.Section>
         <S.TagSearchResultArea>
-          <S.RecruitBlockWrap>
-            <RecruitBlock name={"Whois"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
+          <S.RecruitBlockWrap>{
+            club_list.map(club => 
+              <RecruitBlock 
+                key={club.club_id}
+                name={club.club_name} 
+                type={club.type} 
+                depart={club.depart}
+              />
+            )
+          }
+            {/* <RecruitBlock name={"Whois"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
             <RecruitBlock name={"HaMer"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
-            <RecruitBlock name={"Do-iT"} type={"CLUB_TYPE/CLUB"} depart={"아주대학교 동아리연합회"}/>
+            <RecruitBlock name={"Do-iT"} type={"CLUB_TYPE/CLUB"} depart={"아주대학교 동아리연합회"}/> */}
           </S.RecruitBlockWrap>
         </S.TagSearchResultArea>
       </ParentS.SectionContentArea>

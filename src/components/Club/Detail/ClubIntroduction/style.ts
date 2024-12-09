@@ -25,6 +25,9 @@ export const IconWrapper = styled.div`
 `;
 
 export const Content = styled.p`
+  width: 100%;
+  height: 100%;
+  word-break: keep-all;
   margin: 0;
   font-size: 1em;
   line-height: 1.5;

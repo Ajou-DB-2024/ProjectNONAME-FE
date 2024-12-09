@@ -12,3 +12,9 @@ export const RecruitBlockWrap = styled.section`
   gap: .5em;
 `;
 
+export const Section = styled.section`
+    width: 100%;
+    height: 3em;
+    overflow: visible;
+    z-index: 500;
+`;

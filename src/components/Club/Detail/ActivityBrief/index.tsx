@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { IconTrophy } from "@tabler/icons-react";
 
-type AchievementCardProps = {
+type ActivityBriefProps = {
   title: string;
   count: string;
   mode?: "view" | "edit";
   onValueChange?: (newTitle: string, newCount: string) => void;
 };
 
-const AchievementCard: React.FC<AchievementCardProps> = ({
+const ActivityBrief: React.FC<ActivityBriefProps> = ({
   title,
   count,
   mode = "view",
@@ -56,4 +56,4 @@ const AchievementCard: React.FC<AchievementCardProps> = ({
   );
 };
 
-export default AchievementCard;
+export default ActivityBrief;

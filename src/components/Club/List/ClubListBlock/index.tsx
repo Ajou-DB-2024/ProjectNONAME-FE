@@ -26,6 +26,7 @@ type ClubListBlockProps = {
 
 
 const ClubListBlock: React.FC<ClubListBlockProps> = ({ name, type, depart }) => {
+  console.log(type);
   return <S.ClubListBlock>
     <S.ContentArea>
       <S.BasicInfoArea>

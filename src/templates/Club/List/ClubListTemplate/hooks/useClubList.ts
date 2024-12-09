@@ -32,7 +32,8 @@ const useClubList = (raw_query: Partial<ClubSearchQuery>) => {
         ...v,
         club_id: v.id.toString(),
         club_name: v.name,
-        type: v.type as ClubType
+        type: v.club_type as ClubType,
+        depart: v.club_depart
       }));
       setClubList(club_list); // 데이터 저장
       setStatus({ is_loaded: true, is_error: false });

@@ -23,7 +23,7 @@ type PersonalGlobalLayoutProps = {
 
 const PersonalGlobalLayout: React.FC<PersonalGlobalLayoutProps> = ({ children }) => {
   return <S.PersonalGlobalLayoutWrap>
-    <PageNavigation/>
+    <PageNavigation info={{prev: "김화균의 Weave", curr: "동아리 목록"}}/>
     <S.PersonalServiceArea>
       {children}
     </S.PersonalServiceArea>

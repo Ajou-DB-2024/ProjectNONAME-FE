@@ -55,7 +55,7 @@ export default async function Home() {
     ;
 
     return <HomeTemplate
-      manage_club_briefs={manage_clubs_data.reduce((a, b) => ({ ...a, ...b }))}
+      manage_club_briefs={manage_clubs_data.reduce((a, b) => ({ ...a, ...b }), ({}))}
       member_club_brief={member_clubs_data}
       member={member_data}
       filters={filters}
