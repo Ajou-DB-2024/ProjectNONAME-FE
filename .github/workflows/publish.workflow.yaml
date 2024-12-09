@@ -3,7 +3,7 @@ name: Publish CD Workflow
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   image-build:
