@@ -8,7 +8,7 @@ const ApplicantList: React.FC<{
 }> = ({ applicants }) => {
   return (
     <S.Container>
-      <FilterBar/>
+      <FilterBar applicants={applicants}/>
       <S.List>
         {applicants.map((applicant, i) => (
           <ApplicantBlock 

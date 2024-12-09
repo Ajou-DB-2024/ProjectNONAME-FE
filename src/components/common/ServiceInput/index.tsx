@@ -20,21 +20,32 @@ import ServiceButton from "../ServiceButton";
 import { ServiceButtonSize, ServiceButtonTheme } from "../ServiceButton/type";
 
 type ServiceInputProps = {
-  onInputComplete: (value: string) => any
+  onChange?: (value: string) => any
+  onInputComplete?: (value: string) => any
   options?: InputOptions
   placeholder?: string
-} & HTMLAttributes<HTMLDivElement>
+  value?: string
+} & Omit<HTMLAttributes<HTMLDivElement>, "onChange">
 
 // components
 
 
-const ServiceInput: React.FC<ServiceInputProps> = ({ onInputComplete, options, placeholder, ...props }) => {
+const ServiceInput: React.FC<ServiceInputProps> = ({ onChange, onInputComplete, options = {}, placeholder, value: basic_value, ...props }) => {
 
-  const [ value, setValue ] = useState<string>("");
+  const [ value, setValue ] = useState<string>(basic_value || "");
   const [ endDate, setEndDate ] = useState<string>("");
 
+  useEffect(() => {
+    setValue(basic_value || "");
+  }, [ basic_value ]);
+
+  useEffect(() => {
+    if (onChange) onChange(value);
+  }, [value]);
+
   const onCursorOut = useCallback(() => {
-    onInputComplete(`${value}|${endDate}`);
+    if (options?.type === "date" && onInputComplete) onInputComplete(`${value}|${endDate}`);
+    else if (onInputComplete) onInputComplete(value);
   }, [ value, endDate ]);
 
   return <S.ServiceInputBlock { ...props }>
@@ -76,6 +87,10 @@ const ServiceInput: React.FC<ServiceInputProps> = ({ onInputComplete, options, p
             상시지원으로 만들기
           </ServiceButton>
         </S.DateInputSectionWrap>
+        : (options?.type === "textarea") ? <S.InputTextArea placeholder={placeholder}
+          value={value} onChange={(e) => setValue(e.target.value)}
+          onBlur={ onCursorOut }
+        />
         : <S.InputTag type="string" placeholder={placeholder}
           value={value} onChange={(e) => setValue(e.target.value)}
           onBlur={ onCursorOut }

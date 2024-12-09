@@ -18,5 +18,5 @@ export default async function RecruitManagePage() {
     ],
   };
 
-  return <RecruitManageTemplate {...mockData} />;
+  return <RecruitManageTemplate status={false} {...mockData} />;
 }

@@ -52,11 +52,26 @@ export const InputLength = styled.span<{$max_diff?: number}>`
 
 export const InputArea = styled.section`
   width: 100%;
+  height: 100%;
   
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+`;
+
+export const InputTextArea = styled.textarea`
+
+  outline: none;
+  background-color: transparent;
+  border: none;
+  
+  font-size: 1em;
+  font-weight: 300;
+  color: var(--service-color-H) !important;
+
+  width: 100%;
+  height: 100%;
 `;
 
 export const InputTag = styled.input`

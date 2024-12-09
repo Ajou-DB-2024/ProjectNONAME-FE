@@ -7,7 +7,7 @@ const RecruitingBasicInfo: React.FC = () => {
       <h2>리크루팅 기본정보</h2>
       <label>
         리크루팅 이름
-        <input type="text" placeholder="리크루팅 이름 (ex: 2024-2 Whois 신입회원)" />
+        <input type="text" placeholder="리크루팅 이름 (ex: 2024-2 DBClub 신입회원)" />
       </label>
       <label>
         리크루팅 진행기간

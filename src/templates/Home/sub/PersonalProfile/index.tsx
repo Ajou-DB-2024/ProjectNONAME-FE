@@ -84,7 +84,7 @@ const HomePersonalProfileTemplate: React.FC<HomePersonalProfileTemplateProps> = 
               />
             )
           }
-            {/* <RecruitBlock name={"Whois"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
+            {/* <RecruitBlock name={"DBClub"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
             <RecruitBlock name={"HaMer"} type={"CLUB_TYPE/CONFERENCE"} depart={"소프트웨어융합대학 사이버보안학과"}/>
             <RecruitBlock name={"Do-iT"} type={"CLUB_TYPE/CLUB"} depart={"아주대학교 동아리연합회"}/> */}
           </S.RecruitBlockWrap>

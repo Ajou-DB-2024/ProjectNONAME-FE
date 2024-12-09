@@ -128,6 +128,9 @@ const ClubManageProfileTemplate: React.FC<ClubManageProfileTemplateProps> = ({ m
         theme={ServiceButtonTheme.COLORED} 
         mode={"sub"}   
         style={{width: "100%"}}
+        onClick={() =>(
+          location.href = "/test/recruit/create"
+        )}
       >새로운 리크루딩 생성하기</ServiceButton>
     </ParentS.HomeSection>
   </>

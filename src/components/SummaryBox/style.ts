@@ -24,3 +24,20 @@ export const Box = styled.div`
     font-size: .9rem !important;
   }
 `;
+
+export const CloseBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #aaaaaa;
+  border-radius: .5em;
+
+  padding: 1rem;
+
+  & * {
+    color: white;
+    font-weight: 700;
+    font-size: .9rem !important;
+  }
+`;

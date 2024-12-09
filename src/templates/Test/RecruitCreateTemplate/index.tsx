@@ -8,11 +8,15 @@ import ServiceButton from "@/components/common/ServiceButton";
 import { ServiceButtonSize, ServiceButtonTheme } from "@/components/common/ServiceButton/type";
 import ServiceInput from "@/components/common/ServiceInput";
 import PageNavigation from "@/components/common/PageNavigation";
+import states from "@/core/zustand/states";
 
 const RecruitCreateTemplate: React.FC = () => {
+
+  const { alert } = states.useGlobalAlertQueue();
+
   return (
     <S.Container>
-      <PageNavigation info={{prev: "Whois", curr: "새로운 리크루딩"}}/>
+      <PageNavigation info={{prev: "DBClub", curr: "새로운 리크루딩"}}/>
       <S.Section>
         <S.SectionTitle>
           <h3>리크루딩 기본정보</h3>
@@ -23,7 +27,7 @@ const RecruitCreateTemplate: React.FC = () => {
             title: "리크루딩 이름",
             maxLength: 160,
           }}
-          placeholder="리크루딩 이름 (ex: 2024-2 Whois 신입회원 리크루딩)"
+          placeholder="리크루딩 이름 (ex: 2024-2 DBClub 신입회원 리크루딩)"
           onInputComplete={() => console.log("sef")}
         />
         <ServiceInput 
@@ -58,7 +62,7 @@ const RecruitCreateTemplate: React.FC = () => {
           theme={ServiceButtonTheme.COLORED}
           mode="main"
         >
-          선택된 폼: Whois 기본 지원서 양식
+          선택된 폼: DBClub 기본 지원서 양식
         </ServiceButton>
       </S.Section>
       <section style={{
@@ -79,6 +83,22 @@ const RecruitCreateTemplate: React.FC = () => {
           size={ServiceButtonSize.NORMAL}
           theme={ServiceButtonTheme.COLORED}
           mode="main"
+          onClick={() => {
+            alert({
+              type: "GLOBAL_ALERT_TYPE/NORMAL",
+              contents: {
+                title: "리크루딩을 생성할까요?",
+                desc: "주어진 정보를 토대로 리크루딩을 생성해요. 이 작업은 삭제하거나 취소할 수 없어요.",
+                buttons: [
+                  { text: "취소", value: "cancel", theme: ServiceButtonTheme.COLORED, mode: "sub", onClick: () => true },
+                  { text: "생성", value: "create", theme: ServiceButtonTheme.COLORED, mode: "main", onClick: () => {
+                    location.href = "/test/recruit/member";
+                    return true;
+                  } },
+                ]
+              }
+            })
+          }}
         >
           리크루딩 생성하기
         </ServiceButton>

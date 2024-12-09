@@ -26,7 +26,14 @@ const useRecruitList = (raw_query: Partial<RecruitSearchQuery>) => {
         const response = await findRecruit(query); // findRecruit 호출
         if (!response.result) throw new Error("Failed to fetch recruits");
         if (!response.data.success) throw new Error("Failed to fetch recruits");
-        
+        // let id_list: any[] = [];
+        // console.log(response.data.data);
+        // const save_data = response.data.data.filter(v => {
+        //   if (!id_list.includes(v.recruit_id)) return false;
+        //   id_list.push(v.recruit_id);
+        //   return true;
+        // })
+        // console.log(save_data);
         setRecruitList(response.data.data); // 데이터 저장
         return setStatus({ is_loaded: true, is_error: false });
 

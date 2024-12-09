@@ -15,6 +15,7 @@ const SubmitSection: React.FC<SubmitSectionProps> = ({ totalQuestions }) => {
         theme={"SERVICE_BUTTON/THEME/COLORED"} 
         mode={"main"}    
         style={{width: "100%", height: "4rem"}}    
+        onClick={() => location.href = ("/test/recruit/create")}
       >지원폼 만들기</ServiceButton>
     </S.Container>
   );
