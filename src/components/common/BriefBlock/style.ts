@@ -23,12 +23,15 @@ export const BriefBlock = styled.div`
   }
 `;
 
-export const ValueArea = styled.section`
+export const ValueArea = styled.section<{$align?: "middle" | "default"}>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  ${({$align}) => 
+    $align === "middle" ? "justify-content: center;"
+  : "justify-content: flex-end;"
+  }
 
   & span {
     font-size: 1.25rem;

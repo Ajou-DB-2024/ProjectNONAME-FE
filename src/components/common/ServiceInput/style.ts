@@ -66,8 +66,43 @@ export const InputTag = styled.input`
   
   font-size: 1em;
   font-weight: 300;
-  color: var(--service-color-H);
+  color: var(--service-color-H) !important;
 
   width: 100%;
   height: fit-content;
+`;
+
+export const DateInputSectionWrap = styled.section`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+export const DateInputSection = styled.section`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+`;
+
+export const DateInputWrap = styled.section`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+
+  & h4 {
+    font-size: 1em;
+    white-space: nowrap;
+  }
+`;
+
+export const DateInputTag = styled.input`
+  
 `;

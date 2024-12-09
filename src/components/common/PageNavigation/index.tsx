@@ -35,48 +35,54 @@ type PageRouteDefinitionMap = {
 }
 
 type PageNavigationProps = {
-  
+  info: any
 }
 
-const PageNavigation: React.FC<PageNavigationProps> = ({}) => {
+const PageNavigation: React.FC<PageNavigationProps> = ({info}) => {
   const router = useRouter();
   const pathname = usePathname();
 
   const { errorAlert } = states.useGlobalAlertQueue();
   const { is_logined, member } = states.useMember();
-  const { path_stack, updatePathStack } = states.usePathStack();
+  // const { path_stack, updatePathStack } = states.usePathStack();
   
-  const paths = useMemo(() => path_stack.slice(-2), [path_stack]);
+  // const paths = useMemo(() => path_stack.slice(-2), [path_stack]);
 
-  useEffect(() => {
-    console.log("paths", ...paths);
-  }, [ paths ]);
+  // useEffect(() => {
+  //   console.log("paths", ...paths);
+  // }, [ paths ]);
 
-  useEffect(() => {
-    try {
-      if (!is_logined) return;
-      updatePathStack(pathname, member);
-    } catch(e) {
-      console.log(e);
-      return errorAlert(
-        undefined,
-        "잘못된 경로로 접근하신 것 같아요. 다시 접속해주세요.",
-        [
-          { text: "다시 접속하기", mode: "sub", 
-            onClick: () => { router.refresh(); return true; } 
-          }
-        ]
-      )
-    }
-  }, [ pathname, member ]);
+  // useEffect(() => {
+  //   try {
+  //     if (!is_logined) return;
+  //     updatePathStack(pathname, member);
+  //   } catch(e) {
+  //     console.log(e);
+  //     return errorAlert(
+  //       undefined,
+  //       "잘못된 경로로 접근하신 것 같아요. 다시 접속해주세요.",
+  //       [
+  //         { text: "다시 접속하기", mode: "sub", 
+  //           onClick: () => { router.refresh(); return true; } 
+  //         }
+  //       ]
+  //     )
+  //   }
+  // }, [ pathname, member ]);
 
-  return <S.PageNavigation>{
-    paths.map( ({id, title}, i) => 
+  return <S.PageNavigation>
+    {/* paths.map( ({id, title}, i) => 
       <NavigateText key={id}
         is_main={i === 1} title={title} href={id}
       />
-    )  
-  }</S.PageNavigation>
+    )   */}
+    <NavigateText
+      is_main={false} title={info.prev} href={"/"}
+    />
+    <NavigateText
+      is_main={true} title={info.curr} href={"/"}
+    />
+  </S.PageNavigation>
 };
 
 export default PageNavigation

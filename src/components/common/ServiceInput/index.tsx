@@ -16,6 +16,8 @@ import {  } from "@tabler/icons-react"
 
 // types
 import { InputOptions } from "./type";
+import ServiceButton from "../ServiceButton";
+import { ServiceButtonSize, ServiceButtonTheme } from "../ServiceButton/type";
 
 type ServiceInputProps = {
   onInputComplete: (value: string) => any
@@ -29,10 +31,11 @@ type ServiceInputProps = {
 const ServiceInput: React.FC<ServiceInputProps> = ({ onInputComplete, options, placeholder, ...props }) => {
 
   const [ value, setValue ] = useState<string>("");
+  const [ endDate, setEndDate ] = useState<string>("");
 
   const onCursorOut = useCallback(() => {
-    onInputComplete(value);
-  }, [ value ]);
+    onInputComplete(`${value}|${endDate}`);
+  }, [ value, endDate ]);
 
   return <S.ServiceInputBlock { ...props }>
     <S.DisplayArea>
@@ -46,10 +49,38 @@ const ServiceInput: React.FC<ServiceInputProps> = ({ onInputComplete, options, p
       }
     </S.DisplayArea>
     <S.InputArea>
-      <S.InputTag type="string" placeholder={placeholder}
-        value={value} onChange={(e) => setValue(e.target.value)}
-        onBlur={ onCursorOut }
-      />
+      {
+        (options?.type === "date") ? <S.DateInputSectionWrap>
+          <S.DateInputSection>
+            <S.DateInputWrap>
+              <S.InputTag type="string" placeholder={placeholder}
+                value={value} onChange={(e) => setValue(e.target.value)}
+                onBlur={ onCursorOut }
+              />
+              <h4>부터</h4>
+            </S.DateInputWrap>
+            <S.DateInputWrap>
+              <S.InputTag type="string" placeholder={placeholder}
+                value={endDate} onChange={(e) => setEndDate(e.target.value)}
+                onBlur={ onCursorOut }
+              />
+              <h4>까지</h4>
+            </S.DateInputWrap>
+          </S.DateInputSection>
+          <ServiceButton
+            size={ServiceButtonSize.NORMAL}
+            theme={ServiceButtonTheme.COLORED}
+            mode="sub"
+            style={{width: "100%"}}
+          >
+            상시지원으로 만들기
+          </ServiceButton>
+        </S.DateInputSectionWrap>
+        : <S.InputTag type="string" placeholder={placeholder}
+          value={value} onChange={(e) => setValue(e.target.value)}
+          onBlur={ onCursorOut }
+        />
+      }
     </S.InputArea>
   </S.ServiceInputBlock>
 };

@@ -7,6 +7,9 @@ export const ServiceButtonBlock = styled.div<{
   $theme: ServiceButtonTheme,
   $mode: "main" | "sub",
 }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-weight: 700;
   ${({$size}) => 
