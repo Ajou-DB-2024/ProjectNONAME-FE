@@ -30,7 +30,7 @@ const CLUB_TYPE_TEXT = {
 }
 
 const RecruitBlock: React.FC<RecruitBlockProps> = ({ name, type, depart }) => {
-  return <S.RecruitBlock>
+  return <S.RecruitBlock onClick={() => (location.href = "/test/club/1")}>
     <S.TitleArea>
       <section>
         <h1>{name}</h1>

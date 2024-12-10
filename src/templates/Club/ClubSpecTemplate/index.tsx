@@ -59,8 +59,6 @@ const ClubSpecTemplate: React.FC<ClubSpecTemplateProps> = ({ club }) => {
           {/* <BriefBlock className="basic-info-block" title="직전학기 운영규모" unit={"명"}>{club.detail.}</BriefBlock> */}
           {club.detail.established_date && <BriefBlock className="basic-info-block" title="최초개설일" unit={""}>{formatDate(club.detail.established_date)}</BriefBlock>}
           <BriefBlock className="basic-info-block" title="대표자 연락처" unit={""}>{club.president.email}</BriefBlock>
-          <BriefBlock className="basic-info-block" title="대표자 연락처" unit={""}>{club.president.email}</BriefBlock>
-          <BriefBlock className="basic-info-block" title="대표자 연락처" unit={""}>{club.president.email}</BriefBlock>
         </S.BasicInfoWrap>
       </S.SpecSection>
       {
@@ -90,10 +88,9 @@ const ClubSpecTemplate: React.FC<ClubSpecTemplateProps> = ({ club }) => {
         />
         <S.BasicInfoWrap $direction="column">
           <PhotoViewer images={[
-            "/file.svg",
-            "/globe.svg",
-            "/next.svg",
-            "/vercel.svg"
+            "/1.jpeg",
+            "/2.jpg",
+            "/3.png"
           ]}/>
         </S.BasicInfoWrap>
       </S.SpecSection>
@@ -110,6 +107,9 @@ const ClubSpecTemplate: React.FC<ClubSpecTemplateProps> = ({ club }) => {
           size={"SERVICE_BUTTON/SIZE/NORMAL"} 
           theme={"SERVICE_BUTTON/THEME/COLORED"} 
           mode={"main"}
+          onClick={() => {
+            location.href = "/test/apply/submission"
+          }}
         >지원하기</ServiceButton>
       </S.SpecSection>
     </S.ClubSpecTemplate>

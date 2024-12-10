@@ -16,21 +16,11 @@ export default async function ClubSpec({
   try {
     return <ClubSpecTemplate club={{
       club_id: "1",
-      club_name: "seijfiose",
+      club_name: "DBClub",
       detail: {
         description: `
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
-          sejfoisjfoesifse
+          데이터베이스에 대해 조금 더 자세히 공부하고 싶다면?
+          존재하지는 않지만 신청은 해볼 수 있는 DBClub으로 오세요!
         `,
         study_count: 10,
         award_count: 10,
