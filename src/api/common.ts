@@ -43,7 +43,7 @@ export const requestGetAPI = async <T>(
 
 export const requestPostAPI = async <T>(
   url: string,
-  body: { [keys in string]: string | number } = {},
+  body: { [keys in string]: any } = {},
   query?: { [keys in string]: string | number }
 ): Promise<FEServerResponse<T>> => {
   try {
